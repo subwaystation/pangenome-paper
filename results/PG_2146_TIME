@@ -1,0 +1,13 @@
+# less /sfs/9/ws/afaaj01-ecoli_2146/.nextflow.log.2
+nextflow run nf-core/pangenome -r 1.1.1 -profile cfc --input /home-link/afaaj01/data/ecoli_2146/ecoli_2146.fa.gz -c /home-link/afaaj01/nfx_configs/ecoli_2146_highmem.config --n_haplotypes 2146 --wfmash_map_pct_id 90 --wfmash_segment_length 5000 -w work_ecoli_2146_s5k_p90_k47_hm --outdir results_ecoli_2146_s5k_p90_k47_hm --seqwish_min_match_length 47 --seqwish_transclose_batch 100000 --smoothxg_poa_length 900, --wfmash_chunks 1000
+
+Duration    : 1d 23h 39m
+
+-[nf-core/pangenome] Pipeline completed successfully-
+Completed at: 20-Mar-2024 13:48:46
+Duration    : 1d 23h 21m 41s
+CPU hours   : 3'882.2
+Succeeded   : 1022
+
+CO2e emissions: 15.41 Kg
+Energy consumption: 45.49 KWh

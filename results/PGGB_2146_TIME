@@ -1,0 +1,11 @@
+[smoothxg::(1-1)::smoothable_blocks] computing blocks for 5263812 handles: 100.00% @ 4.82e+02/s elapsed: 00:03:01:56 remain: 00:00:00:00
+[smoothxg::(1-1)::break_and_split_blocks] cutting blocks that contain sequences longer than max-poa-length (1800) and depth >= 0
+[smoothxg::(1-1)::break_and_split_blocks] splitting 314048 blocks at identity 0.900 (WFA-based clustering) and at estimated-identity 0.900 (mash-based clustering)
+[smoothxg::(1-1)::break_and_split_blocks] cutting and splitting 314048 blocks: 100.00% @ 9.81e+03/s elapsed: 00:00:00:32 remain: 00:00:00:00
+[smoothxg::(1-1)::break_and_split_blocks] cut 5 blocks of which 0 had repeats
+[smoothxg::(1-1)::break_and_split_blocks] split 0 blocks
+[smoothxg::(1-1)::ssrun: Job step aborted: Waiting up to 32 seconds for job step to finish.s elapsed: 00:18:39:02 remain: 01:22:39:02
+slurmstepd: error: *** STEP 10337633.0 ON node026 CANCELLED AT 2024-03-06T12:36:33 DUE TO TIME LIMIT ***
+mooth_and_lace] applying local SPOA to 314048 blocks: 28.56% @ 1.34e+00/s elapsed: 00:18:39:02 remain: 01:22:39:02srun: error: node026: task 0: Terminated
+
+AFTER 30 DAYS!
