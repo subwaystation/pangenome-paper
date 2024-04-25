@@ -1,17 +1,12 @@
-# /sfs/9/ws/afaaj01-chr19/1000haps/.nextflow.log.2
-nextflow run nf-core/pangenome -r 1.1.1 -profile cfc --input chr19.1000.fa.gz -c /home-link/afaaj01/nfx_configs/1kgp_chr19.config --n_haplotypes 1000 --wfmash_map_pct_id 98 --wfmash_segment_length 100000 -w work_p98_s100k_k311_pg111 --outdir results_p98_s100k_k311_pg111 --seqwish_min_match_length 311 --wfmash_chunks 100 --seqwish_transclose_batch 1000000
-
-v1.1.1
+nextflow run nf-core/pangenome -r 1.1.2 -profile cfc --input chr19.1000.fa.gz -c /home-link/afaaj01/nfx_configs/1kgp_chr19.config --n_haplotypes 1000 --wfmash_map_pct_id 98 --wfmash_segment_length 100000 -w work_p98_s100k_k311_pg112 --outdir results_p98_s100k_k311_pg112 --seqwish_min_match_length 311 --wfmash_chunks 100 --seqwish_transclose_batch 1000000
 
 -[nf-core/pangenome] Pipeline completed successfully-
-Completed at: 18-Mar-2024 14:16:25
-Duration    : 3d 3h 30m 44s
-CPU hours   : 5'667.9
+Completed at: 30-Mar-2024 01:06:59
+Duration    : 3d 15h 54m 7s
+CPU hours   : 10'614.2
 Succeeded   : 122
 
-CO2e emissions: 22.52 Kg
-Energy consumption: 66.5 KWh
-
-# /sfs/9/ws/afaaj01-chr19/1000haps/.nextflow.log.1
+CO2e emissions: 51.07 Kg
+Energy consumption: 150.8 KWh
 
 
