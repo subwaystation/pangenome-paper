@@ -1,0 +1,3 @@
+Module	Section	Sample Name	Source
+ODGI	all_sections	chr19.1000	/home/heumos/git/pangenome-paper/results/chr19/chr19.1000.fa.gz.gfaffix.unchop.Ygs.og.stats.yaml
+ODGI	all_sections	chr19.1000.crush	/home/heumos/git/pangenome-paper/results/chr19/chr19.1000.crush.fa.gz.gfaffix.unchop.Ygs.og.crush.og.stats.yaml

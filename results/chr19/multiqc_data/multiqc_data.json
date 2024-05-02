@@ -1,0 +1,201 @@
+{
+    "report_data_sources": {
+        "ODGI": {
+            "all_sections": {
+                "chr19.1000": "/home/heumos/git/pangenome-paper/results/chr19/chr19.1000.fa.gz.gfaffix.unchop.Ygs.og.stats.yaml",
+                "chr19.1000.crush": "/home/heumos/git/pangenome-paper/results/chr19/chr19.1000.crush.fa.gz.gfaffix.unchop.Ygs.og.crush.og.stats.yaml"
+            }
+        }
+    },
+    "report_general_stats_data": [],
+    "report_general_stats_headers": [],
+    "report_multiqc_command": "/home/heumos/miniconda3/envs/multiqc/bin/multiqc .",
+    "report_plot_data": {
+        "odgi_sum_of_path_nodes_distances_plot": {
+            "plot_type": "bar_graph",
+            "samples": [
+                [
+                    "chr19.1000",
+                    "chr19.1000.crush"
+                ],
+                [
+                    "chr19.1000",
+                    "chr19.1000.crush"
+                ]
+            ],
+            "datasets": [
+                [
+                    {
+                        "name": "Sum of distances: node space",
+                        "data": [
+                            3.00951,
+                            3.00951
+                        ],
+                        "color": "#7cb5ec"
+                    }
+                ],
+                [
+                    {
+                        "name": "Sum of distances: nucleotide space",
+                        "data": [
+                            57.7785,
+                            2.34976
+                        ],
+                        "color": "#7cb5ec"
+                    }
+                ]
+            ],
+            "config": {
+                "id": "odgi_sum_of_path_nodes_distances_plot",
+                "title": "ODGI: Sum of path node distances",
+                "ylab": "Distance",
+                "yDecimals": false,
+                "cpswitch": false,
+                "logswitch": true,
+                "logswitch_active": true,
+                "data_labels": [
+                    {
+                        "name": "Node space",
+                        "ylab": "Distance"
+                    },
+                    {
+                        "name": "Nucleotide space",
+                        "ylab": "Distance"
+                    }
+                ],
+                "reversedStacks": true
+            }
+        },
+        "odgi_mean_links_length_plot": {
+            "plot_type": "bar_graph",
+            "samples": [
+                [
+                    "chr19.1000",
+                    "chr19.1000.crush"
+                ],
+                [
+                    "chr19.1000",
+                    "chr19.1000.crush"
+                ]
+            ],
+            "datasets": [
+                [
+                    {
+                        "name": "Mean links length: node space",
+                        "data": [
+                            0.751373,
+                            0.751373
+                        ],
+                        "color": "#7cb5ec"
+                    }
+                ],
+                [
+                    {
+                        "name": "Mean links length: nucleotide space",
+                        "data": [
+                            16.8515,
+                            16.8515
+                        ],
+                        "color": "#7cb5ec"
+                    }
+                ]
+            ],
+            "config": {
+                "id": "odgi_mean_links_length_plot",
+                "title": "ODGI: Mean links length",
+                "ylab": "Distance",
+                "yDecimals": false,
+                "cpswitch": false,
+                "logswitch": true,
+                "logswitch_active": true,
+                "data_labels": [
+                    {
+                        "name": "Node space",
+                        "ylab": "Distance"
+                    },
+                    {
+                        "name": "Nucleotide space",
+                        "ylab": "Distance"
+                    }
+                ],
+                "reversedStacks": true
+            }
+        }
+    },
+    "report_saved_raw_data": {
+        "multiqc_odgi_stats": {
+            "chr19.1000": {
+                "length": 3393915450.0,
+                "nodes": 2594408.0,
+                "edges": 3498791.0,
+                "paths": 1000.0,
+                "components": 1.0,
+                "A": 19633450.0,
+                "C": 16968263.0,
+                "T": 19854852.0,
+                "G": 17458885.0,
+                "N": 3320000000.0,
+                "total": 6.0,
+                "unique": 6.0,
+                "mean_links_length_path": "all_paths",
+                "mean_links_length_in_node_space": 0.751373,
+                "mean_links_length_in_nucleotide_space": 16.8515,
+                "mean_links_length_num_links_considered": 1721498019,
+                "mean_links_length_num_gap_links_not_penalized": 1721189627,
+                "sum_of_path_nodes_distances_path": "all_paths",
+                "sum_of_path_nodes_distances_in_node_space": 3.00951,
+                "sum_of_path_nodes_distances_in_nucleotide_space": 57.7785,
+                "sum_of_path_nodes_distances_nodes": 1721499019,
+                "sum_of_path_nodes_distances_nucleotides": 59125115010,
+                "sum_of_path_nodes_distances_num_penalties": 106583,
+                "sum_of_path_nodes_distances_num_penalties_different_orientation": 0,
+                "pct_gc": 1.0143784813496164,
+                "pct_n": 97.82211869774187
+            },
+            "chr19.1000.crush": {
+                "length": 73921450.0,
+                "nodes": 2594408.0,
+                "edges": 3498791.0,
+                "paths": 1000.0,
+                "components": 1.0,
+                "A": 19633450.0,
+                "C": 16968263.0,
+                "T": 19854852.0,
+                "G": 17458885.0,
+                "N": 6000.0,
+                "total": 6.0,
+                "unique": 6.0,
+                "mean_links_length_path": "all_paths",
+                "mean_links_length_in_node_space": 0.751373,
+                "mean_links_length_in_nucleotide_space": 16.8515,
+                "mean_links_length_num_links_considered": 1721498019,
+                "mean_links_length_num_gap_links_not_penalized": 1721189627,
+                "sum_of_path_nodes_distances_path": "all_paths",
+                "sum_of_path_nodes_distances_in_node_space": 3.00951,
+                "sum_of_path_nodes_distances_in_nucleotide_space": 2.34976,
+                "sum_of_path_nodes_distances_nodes": 1721499019,
+                "sum_of_path_nodes_distances_nucleotides": 55805121010,
+                "sum_of_path_nodes_distances_num_penalties": 106583,
+                "sum_of_path_nodes_distances_num_penalties_different_orientation": 0,
+                "pct_gc": 46.572609168245485,
+                "pct_n": 0.008116723900843396
+            }
+        }
+    },
+    "config_analysis_dir_abs": [
+        "/home/heumos/git/pangenome-paper/results/chr19"
+    ],
+    "config_analysis_dir": [
+        "."
+    ],
+    "config_creation_date": "2024-04-26, 10:24 CEST",
+    "config_git_hash": null,
+    "config_intro_text": null,
+    "config_report_comment": null,
+    "config_report_header_info": null,
+    "config_script_path": "/home/heumos/miniconda3/envs/multiqc/lib/python3.11/site-packages/multiqc/utils",
+    "config_short_version": "1.17",
+    "config_subtitle": null,
+    "config_title": null,
+    "config_version": "1.17"
+}

@@ -1,0 +1,5 @@
+Module	Section	Sample Name	Source
+ODGI	all_sections	ecoli2146.pan.explode.crush.no_plasmids	/home/heumos/git/pangenome-paper/results/ecoli/ecoli2146.pan.explode.crush.no_plasmids.fa.0.og.crush.og.2013.og.stats.yaml
+ODGI	all_sections	ecoli_2146	/home/heumos/git/pangenome-paper/results/ecoli/ecoli_2146.fa.gz.gfaffix.unchop.Ygs.og.stats.yaml
+ODGI	all_sections	ecoli2146.pan.explode	/home/heumos/git/pangenome-paper/results/ecoli/ecoli2146.pan.explode.fa.0.og.stats.yaml
+ODGI	all_sections	ecoli2146.pan.explode.crush	/home/heumos/git/pangenome-paper/results/ecoli/ecoli2146.pan.explode.crush.fa.0.og.crush.og.stats.yaml
