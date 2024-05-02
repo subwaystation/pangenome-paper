@@ -1,0 +1,194 @@
+\PassOptionsToPackage{utf8}{inputenc}
+\documentclass{bioinfo}
+
+\usepackage{makecell}
+
+\usepackage{floatrow}
+
+\usepackage{comment}
+
+\usepackage{siunitx}
+
+% singlelinecheck=false puts subcaptions on the left
+%\usepackage[singlelinecheck=false]{subcaption}
+
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\usepackage{amsfonts}
+\usepackage{booktabs}
+
+\usepackage{algorithm2e}
+\usepackage[usenames,dvipsnames]{xcolor}
+\SetAlgoLined
+\usepackage{bm}
+
+% we squeeze our figures even more together
+\captionsetup{belowskip=-2pt}
+
+\SetAlgoLined
+\SetKwProg{MyStruct}{Struct}{ contains}{end}
+
+\newcommand{\vocab}{\textbf}
+\newcommand{\red}[1]{{\textcolor{Red}{#1}}}
+\newcommand{\FIXME}[1]{\red{[FIXME: #1]}}
+
+\usepackage{orcidlink}
+\hypersetup{hidelinks}
+\usepackage{appendix}
+\newcommand{\description}{}
+\usepackage[inline]{enumitem}
+
+% table stuff
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\usepackage{float}
+\usepackage{hyperref}
+\floatstyle{plaintop}
+\restylefloat{table}
+
+% supplement stuff
+\newcommand{\beginsupplement}{%
+	\setcounter{table}{0}
+	\renewcommand{\thetable}{S\arabic{table}}%
+	\setcounter{figure}{0}
+	\renewcommand{\thefigure}{S\arabic{figure}}%
+}
+
+\def\labelitemi{--}
+
+\copyrightyear{2024} \pubyear{XXXX}
+
+\access{Advance Access Publication Date: Day Month Year}
+\appnotes{Genome Analysis}
+
+\begin{document}
+    \firstpage{1}
+
+    \subtitle{Genome Analysis}
+
+    \title[Cluster efficient pangenome graph construction with nf-core/pangenome]{Cluster efficient pangenome graph construction with nf-core/pangenome}
+    %\title[Genome-guided pangenome graph layouts via Stochastic Gradient Descent]{Genome-guided pangenome graph layouts via Stochastic Gradient Descent}
+	%\title[Sequence-guided pangenome graph layouts via Stochastic Gradient Descent]{Sequence-guided pangenome graph layouts via Stochastic Gradient Descent}
+    %\title[Genome-guided pangenome graph layouts]{Genome-guided pangenome graph layouts}
+	%\title[Sequence-guided pangenome graph layouts]{Sequence-guided pangenome graph layouts}
+    
+	\author[Heumos, Guarracino \textit{et~al}.]{
+        Simon~Heumos\,$^{\orcidlink{0000-0003-3326-817X}1,2,3,4,*}$,
+        Andrea~Guarracino\,$^{\orcidlink{0000-0001-9744-131X}5,6,}$,
+        Sven Nahnsen\,$^{\orcidlink{0000-0002-4375-0691}1,2,3,4,*}$,
+        Pjotr Prins\,$^{\orcidlink{0000-0002-8021-9162}5}$,
+        Erik~Garrison\,$^{\orcidlink{0000-0003-3821-631X}5}$
+    }
+
+    \address{
+        $^1$Quantitative Biology Center (QBiC), University of Tübingen, Tübingen 72076, Germany \\
+        $^2$Biomedical Data Science, Department of Computer Science, University of Tübingen, Tübingen 72076, Germany \\
+        $^3$M3 Research Center, University Hospital Tübingen, Tübingen 72076 , Germany \\
+        $^4$Institute for Bioinformatics and Medical Informatics (IBMI), University of Tübingen, Tübingen 72076, Germany \\
+        $^5$Department of Genetics, Genomics and Informatics, University of Tennessee Health Science Center, Memphis, TN 38163, USA \\
+        $^6$Genomics Research Centre, Human Technopole, Milan 20157, Italy \\
+    }
+
+    \corresp{
+        $^\ast$To whom correspondence should be addressed. \\
+        $^{\dagger}$The authors wish it to be known that, in their opinion, the first two authors should be regarded as Joint First Authors.\
+    }
+
+    \history{Received on XXXXX; revised on XXXXX; accepted on XXXXX}
+
+    \editor{Associate Editor: XXXXXXX}
+
+	\abstract{
+	\textbf{Motivation:}
+	Pangenome graphs can encode the entire genomic variability between multiple genomes. Current pangenome graph construction methods exclude complex sequences or are reference-based, leading to reference, order, or orientation bias. This was addressed by the PanGenome Graph Builder (PGGB) pipeline. 
+	However, PGGB’s bash implementation limits its ease of deployment, optimal use of compute resources, and cluster scalability, making it impractical to build very large pangenome graphs.
+	\\
+	\textbf{Results:}
+	We implemented \textit{nf-core/pangenome}, a reference-unbiased approach to construct pangenome graphs. 
+	Mirroring PGGB, it iteratively refines an all-to-all whole-genome alignment graph that allows to explore sequence conservation and variation, infer phylogeny, and identify recombination events. 
+	nf-core/pangenome is implemented in Nextflow and follows the nf-core best practice development guidelines. 
+	Providing all software dependencies in biocontainers makes the pipeline portable and easy to install on high-performance computing environments. 
+	In contrast to PGGB, this allows nf-core/pangenome to distribute the quadratically complex all-to-all base-level alignments across nodes of a cluster. 
+	Evaluating 1024 E. coli haplotypes, the time spent on base-pair level alignments is reduced linearly with an increase in alignment problem chunks. 
+	To demonstrate the scalability of nf-core/pangenome, we built pangenome graphs of 1000 chromosome 19 human haplotypes, and of 2146 E. coli sequences. nf-core/pangenome was two to three times faster compared to PGGB while not increasing the greenhouse gas emissions.
+	\\
+	\textbf{Availability:}
+	nf-core/pangenome is published as free software under the MIT open-source license. Source code can be downloaded from \url{https://github.com/nf-core/pangenome} and the documentation is accessible at \url{https://nf-co.re/pangenome/1.1.2/docs/usage}. 
+	Each release is archived on Zenodo \texttt{\href{https://zenodo.org/doi/10.5281/zenodo.8202636}{10.5281/zenodo.8202636}}. \\
+	\textbf{Contact:} \href{simon.heumos@qbic.uni-tuebingen.de}{simon.heumos@qbic.uni-tuebingen.de}, \href{sven.nahnsen@qbic.uni-tuebingen.de}{sven.nahnsen@qbic.uni-tuebingen.de} \\
+	%\textbf{Supplementary information:} Supplementary data are available online. %at \textit{Bioinformatics} online.
+	}
+	
+	\maketitle
+
+	\section{Introduction}
+	The availability of high-quality collections of population-wide whole-genome assemblies \citep{Liao2023, Kang2023, Weller2023, Zhou2022, Liu2020, Leonard2022} offers new opportunities to study sequence evolution and variation within and between genomic populations. 
+	A challenge is simultaneously representing and analyzing hundreds to thousands of genomes at a gigabase scale. One solution here is a pangenome. 
+	A pangenome models a population's entire set of genomic sequences \citep{Ballouz2019}. 
+	In contrast to reference-based genomic approaches, which relate sequences to a linear genome, pangenomics relates each new sequence to all the others represented in the pangenome \citep{CompPan2016, Eizenga_2020, Sherman_2020} minimizing reference-bias. 
+	Pangenomes can be described as sequence graphs which store DNA sequences in nodes with edges connecting the nodes as they occur in the individual sequences \citep{Hein1989}. 
+	Genomes are encoded as paths traversing the nodes \citep{Garrison:2018}.
+	
+	Current pangenome graph construction methods exclude complex sequences, are tree-guided, or reference-based \citep{Li:2020, Hickey2023} leading to reference, order, or orientation bias. 
+	Although whole genome scaling approaches for unbiased pangenome graph construction \citep{Chin2023, Minkin2016} exist, their reliance on k-mer-based data structures often leads to unwanted complexity for downstream analysis. 
+	One recent approach that overcomes such limitations is the PanGenome Graph Builder (PGGB) pipeline \citep{Garrison2023}. 
+	PGGB iteratively refines an all-to-all whole-genome alignment graph that lets us explore sequence conservation and variation, infer phylogeny, and identify recombination events. 
+	PGGB was already extensively evaluated \citep{Garrison2023, Andreace2023} and applied to build the first draft human pangenome reference \citep{Liao2023}.
+	However, PGGB is implemented in bash: This (a) makes it difficult to deploy on HPC systems, (b) does not allow for a fine granular tuning of computing resources for different steps of the pipeline \citep{Sztuka2024}, and (c) limits its cluster scalability because PGGB can only use the resources of one node.
+	
+	To compensate for that, we wrote \textit{nf-core/pangenome}, a reference-unbiased approach to construct pangenome graphs. 
+	Mirroring PGGB, nf-core/pangenome is implemented in Nextflow \citep{DiTommaso2017} and follows the community-curated nf-core \citep{Ewels2020} best practice development guidelines. 
+	Providing all software dependencies in biocontainers \citep{daVeigaLeprevost2017} makes the pipeline portable and easy to install on HPC environments. 
+	In contrast to PGGB, this facilitates nf-core/pangenome to distribute the quadratic all-to-all base-level alignments across nodes of a cluster by splitting the approximate alignments into problems of equal size. 
+	We benchmarked the time spent on base-pair level alignments and show that it is reduced linearly with an increase in alignment problem chunks. 
+	We showcase the workflow’s scalability by applying it to 1000 chromosome 19 human haplotypes, and to 2146 E. coli sequences, which were built in less than half the time PGGB required while not increasing the CO2 equivalent (CO2e) emissions.
+
+	\section{Material and Methods}
+
+	
+	\section{Results}
+	
+
+	\section{Discussion}
+	\label{sec:discussion}
+
+	\section*{Acknowledgments}
+
+	We thank Matthias Seybold from the Quantitative Biology Center for maintaining the Core Facility Cluster.
+	
+	\section*{Funding}
+	
+	S.H. acknowledges funding from the Central Innovation Programme (ZIM) for SMEs of the Federal Ministry for Economic Affairs and Energy of Germany.
+	S.N. acknowledges Germany’s Excellence Strategy (CMFI), EXC-2124 and (iFIT)—EXC 2180–390900677.
+	This work was supported by the BMBF-funded de.NBI Cloud within the German Network for Bioinformatics Infrastructure (de.NBI) (031A532B, 031A533A, 031A533B, 031A534A, 031A535A, 031A537A, 031A537B, 031A537C, 031A537D and 031A538A).
+	A.G. acknowledges efforts by Nicole Soranzo to establish a pangenome research unit at the Human Technopole in Milan, Italy.
+	JNM.S., J.L., Z.Z., P.P., and E.G. acknowledge funding from the NSF PPoSS Award \#2118709. The authors gratefully acknowledge support from National Institutes of Health/NIDA U01DA047638 (E.G.), National Institutes of Health/NIGMS R01GM123489 (E.G. and P.P.)
+	
+	\section*{Competing interests}
+	Author J.H. is employed by Computomics GmbH.
+	
+	\section*{Software and data availability}
+	
+	Software versions, code, and links to data used to prepare this manuscript can be found at \url{https://github.com/pangenome/sorting-paper}.
+	Animations of the algorithm are deposited at \url{https://doi.org/10.5281/zenodo.8288999}.
+		
+	\bibliographystyle{natbib}
+	
+	\bibliography{document}
+	
+	\clearpage
+	\setcounter{page}{1}
+	
+	\beginsupplement
+	
+	\section{Supplement}
+	
+
+\end{document}
