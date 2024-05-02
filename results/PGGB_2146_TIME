@@ -1,3 +1,5 @@
+srun -p qbic --mem=1800000 -J pggb054_2146_ecoli -c 128 -t 30-0 --exclude=node[029-031] /usr/bin/time --verbose pggb -i /home-link/afaaj01/data/ecoli_2146/ecoli_2146.fa.gz -p 90 -s 5000 -n 2146 -k 47 -G 900 -t 64 -o /sfs/9/ws/afaaj01-pggb/2146_ecoli_out -m -A -B 100000
+
 [smoothxg::(1-1)::smoothable_blocks] computing blocks for 5263812 handles: 100.00% @ 4.82e+02/s elapsed: 00:03:01:56 remain: 00:00:00:00
 [smoothxg::(1-1)::break_and_split_blocks] cutting blocks that contain sequences longer than max-poa-length (1800) and depth >= 0
 [smoothxg::(1-1)::break_and_split_blocks] splitting 314048 blocks at identity 0.900 (WFA-based clustering) and at estimated-identity 0.900 (mash-based clustering)
