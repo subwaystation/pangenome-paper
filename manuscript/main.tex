@@ -11,6 +11,8 @@
 
 % singlelinecheck=false puts subcaptions on the left
 %\usepackage[singlelinecheck=false]{subcaption}
+\usepackage[caption=false]{subfig}
+\floatsetup[figure]{style=plain,subcapbesideposition=top}
 
 \usepackage{amsthm}
 \theoremstyle{definition}
@@ -50,8 +52,8 @@
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
 \usepackage{float}
 \usepackage{hyperref}
-\floatstyle{plaintop}
-\restylefloat{table}
+%\floatstyle{plaintop}
+%\restylefloat{table}
 
 % supplement stuff
 \newcommand{\beginsupplement}{%
@@ -116,8 +118,8 @@
 	nf-core/pangenome is implemented in Nextflow and follows the nf-core best practice development guidelines. 
 	Providing all software dependencies in biocontainers makes the pipeline portable and easy to install on high-performance computing environments. 
 	In contrast to PGGB, this allows nf-core/pangenome to distribute the quadratically complex all-to-all base-level alignments across nodes of a cluster. 
-	Evaluating 1024 E. coli haplotypes, the time spent on base-pair level alignments is reduced linearly with an increase in alignment problem chunks. 
-	To demonstrate the scalability of nf-core/pangenome, we built pangenome graphs of 1000 chromosome 19 human haplotypes, and of 2146 E. coli sequences. nf-core/pangenome was two to three times faster compared to PGGB while not increasing the greenhouse gas emissions.
+	Evaluating 1024 \textit{E. coli} haplotypes, the time spent on base-pair level alignments is reduced linearly with an increase in alignment problem chunks. 
+	To demonstrate the scalability of nf-core/pangenome, we built pangenome graphs of 1000 chromosome 19 human haplotypes, and of 2146 \textit{E. coli} sequences. nf-core/pangenome was two to three times faster compared to PGGB while not increasing the greenhouse gas emissions.
 	\\
 	\textbf{Availability:}
 	nf-core/pangenome is published as free software under the MIT open-source license. Source code can be downloaded from \url{https://github.com/nf-core/pangenome} and the documentation is accessible at \url{https://nf-co.re/pangenome/1.1.2/docs/usage}. 
@@ -149,35 +151,164 @@
 	In contrast to PGGB, this facilitates nf-core/pangenome to distribute the quadratic all-to-all base-level alignments across nodes of a cluster by splitting the approximate alignments into problems of equal size. 
 	We benchmarked the time spent on base-pair level alignments and show that it is reduced linearly with an increase in alignment problem chunks. 
 	We showcase the workflow’s scalability by applying it to 1000 chromosome 19 human haplotypes, and to 2146 E. coli sequences, which were built in less than half the time PGGB required while not increasing the CO2 equivalent (CO2e) emissions.
-
+	
 	\section{Material and Methods}
+	
+	\subsection{Pipeline overview}
+	The pipeline’s (Fig. \ref{fig1:workflow}) input is a FASTA file compressed with \textit{bgzip} \citep{Li2009} containing the sequences to create the graph. 
+	Sequence names should follow the Pangenome Sequence Naming specification (PanSN-spec) \citep{pansn-spec}. 
+	The primary output is a pangenome variation graph \citep{Garrison:2018} in the Graphical Fragment Assembly (GFA) format version 1 \citep{GFA}.
+	
+	\include{fig_panel}
 
+	\subsubsection{Core workflow}
+	
+	The core workflow of nf-core/pangenome is an exact mirror of PGGB (Fig. \ref{fig1:workflow}).
+	The pipeline comes with additional enhancements: (a) All concurrent processes can be run in parallel. (b) Each process can be given individual computing resources. 
+	This results in efficient resource management, especially compared to PGGB, which uses the same resources for all steps of the pipeline. 
+	
+	The first step in the nf-core/pangenome pipeline is the all-to-all alignment of the input sequences with the whole-chromosome pairwise sequence aligner WFMASH \citep{wfmash}. 
+	This avoids reference, order, or orientation bias, and allows each sequence in the pangenome to serve as a reference when exploring related variation. 
+	In the pangenome graph induction step SEQWISH \citep{Garrison2022}, an alignment to variation graph inducer, converts the sequence alignments into a variation graph. SEQWISH can recapture homology relationships that may not be encoded in the initial alignments. 
+	This allows us to randomly sparsify the mappings computed by WFMASH. 
+	The applied heuristic is based on the Erdös-Rényi random graph model \citep{Bollobs2001}. 
+	We then normalize the graph with the variation graph simplification algorithm SMOOTHXG \citep{Garrison2023}.
+	This considers the local spurious complexity inherent in the raw pairwise alignments. 
+	If ignored, this could lead to difficulties in downstream processing of the graph.
+	Therefore, SMOOTHXG iteratively applies a local Multiple Sequence Alignment (MSA) kernel, partial order alignment (POA) \citep{Lee2002}, to refine and compress the pangenome graph. A 1-dimensional (1D) graph embedding \citep{Heumos2023} gives rise to the regions the kernel is applied to. 
+	After applying the graph embedding algorithm, the graphs’ node order best-matches the nucleotide distances of the genomic paths of the graph. 
+	Next, the graph is split into partially overlapping segments. 
+	The sequences of each segment are realigned with POA. Afterwards, the segments are laced back together into a variation graph. 
+	By default, the SMOOTHXG process is applied 3 times in order to smoothen the edge effects at the boundaries of the segments.
+	
+	In the final normalization phase, we employ GFAFFIX \citep{Liao2023} to systematically condense redundant nodes within the graph. 
+	Subsequently, the 1D graph embedding algorithm is reapplied to ensure a human-readable representation of the processed data. 
+	%For more details about each step, we refer to the original PGGB paper (Garrison et al. 2023).
+	
+	Basic graph build quality is evaluated with ODGI: Optimized Dynamic Genome/Graph Implementation \citep{Guarracino2022} for understanding pangenome graphs. Specifically, ODGI reports basic graph statistics, such as the length, and the number of nucleotides, paths, edges, nodes, and components. ODGI’s human readable 1D and 2D visualizations help to understand if the biology encoded in the graph fits the expectations. 
+	Six different 1D views focus on displaying the relative alignments of the graph’s paths, while the 2D view highlights high-level features such as SVs. 
+	Additionally, the 2D TSV layout of ODGI can be interactively explored in the variation graph visualizers gfaestus (\url{https://github.com/chfi/gfaestus}) or waragraph (\url{https://github.com/chfi/waragraph}). 
+	Optionally, nf-core/pangenome calls variants against any (reference) path(s) in the graph using vg deconstruct \citep{Garrison:2018}. 
+	Finally, graph statistics and diagnostic visualizations are summarized in a MultiQC \citep{Ewels_2016} report.
+	
+	\subsubsection{Alignment jobs distribution}
+	
+	The computationally heavy all versus all base-pair level alignments can be distributed across nodes of a cluster: 
+	First, WFMASH is run in mapping mode (WFMASH MAP), finding all sequence homologies using approximate alignments. 
+	The resulting Pairwise mApping Format (PAF) file is split into chunks of equal problem size. 
+	The number of chunks is manually selected. 
+	The value can be guided by the number and size of the input sequences, and by the available hardware. 
+	Assuming the number of chunks equals the number of nodes on a cluster, then potentially each base-pair level alignment (WFMASH ALIGN) can be run in parallel on each node  (Fig. \ref{fig1:workflow}, cyan tubes). 
+	All resulting PAFs are then forwarded to the pipeline’s core workflow which is continued at the SEQWISH process.
+	
+	\subsection{Implementation}
+	
+	nf-core/pangenome is written in Nextflow using its latest domain-specific language (DSL) 2 syntax which facilitates a modular pipeline structure. 
+	Each software tool is an individual process that is implemented in its own module (\href{https://nf-co.re/docs/contributing/modules}{https://nf-co.re/docs/contributing/modules}). 
+	Processes are concatenated into subworkflows (\url{https://nf-co.re/docs/contributing/subworkflows}). 
+	Developed with the nf-core framework, the pipeline follows a set of best-practice guidelines ensuring high-quality development, maintenance, and testing standards. Specifically, we provide community support via a dedicated Slack channel (\url{https://nfcore.slack.com/channels/pangenome}), GitHub issues, and detailed documentation (\url{https://nf-co.re/pangenome/1.1.2/docs/usage}).
+	Versioning and portability are enabled through (a) semantic versioning (\url{https://semver.org/}) of the pipeline via tagged releases on GitHub, (b) packaging software dependencies in archivable containers so that the software compute environment is the same across different systems, and (c) summarizing software versions and parameters in the MultiQC report of the pipeline. 
+	nf-core/ pangenome uses biocontainers to facilitate portability across different computing resources like HPC clusters, cloud platforms, or local machines. 
+	Code changes are evaluated with GitHub Actions’ continuous integration (CI) using a pipeline-specific small test data set. 
+	For each new pipeline release, a full-size test is run on Amazon Web Services (AWS) validating the code integrity and cloud compatibility of real-world data sets.
+	Specifically, a pangenome graph is created from the 8 Saccharomyces cerevisiae strains of the Yeast Population Reference Panel (YPRP) (Yue and Liti 2018). 
+	The results of such a run are available on the nf-core webpage (\url{https://nf-co.re/pangenome/1.1.2/results/pangenome/results-0e8a38734ea3c0397f94416a0146a2972fe2db8b}). 
+	Because we implemented our processes using DSL2 nf-core/modules (\href{https://github.com/nf-core/modules}{https://github.com/nf-core/modules}), they can be distributed easily to other users to share commonly used processes or subworkflows across pipelines. This boosts the reuse of existing work done by the community to be integrated into future pipelines.
+	
+	\subsection{Compute environment}
+	
+	We applied the nf-core/pangenome pipeline v1.1.2 to various inputs evaluating both the scalability of the all-vs-all alignment step as well as the pipeline as a whole. 
+	We used Nextflow version 23.10.1.5891 and Singularity version 3.8.7-1.el8 for each pipeline run. 
+	Experiments were conducted on our core facility cluster (CFC) with 24 Regular nodes (32 cores / 64 threads with two AMD EPYC 7343 processors with 512 GB RAM and 2 TB scratch space) and 4 HighMem nodes (64 cores / 128 threads with two AMD EPYC 7513 processors with 2048 GB RAM and 4TB scratch space). 
+	Each Nextflow process was given at most 64 threads. This ensures a fair run time comparison with PGGB v0.5.4 which was always executed on one Regular node via Slurm.
+	
+	\subsection{Estimation of the carbon footprint of pipeline runs}
+	
+	We also estimated the carbon dioxide equivalent (CO2e) emissions of each nf-core/pangenome pipeline run using the nf-co2footprint Nextflow plugin (\href{https://github.com/nextflow-io/nf-co2footprint}{https://github.com/nextflow-io/nf-co2footprint}) v1.0.0-beta. 
+	Using the Nextflow resource usage metrics and information about the power consumption of the compute system, the plugin first estimates the energy consumption for each pipeline task. 
+	It then uses the consumed energy's location-specific carbon intensity to estimate the respective CO2e emission.
+	The calculations are based on the carbon footprint computation method developed in the Green Algorithms project (\href{www.green-algorithms.org}{www.green-algorithms.org}) \citep{Lannelongue2021}.
 	
 	\section{Results}
 	
+	\subsection{Alignment jobs distribution evaluation}
+	
+	Generating all-vs-all alignments is a computationally quadratic problem. 
+	To evaluate nf-core/pangenome’s alignment jobs scalability, we applied it to 1024 \textit{E. coli} genomes with varying numbers of chunks. 
+	nf-core/pangenome’s alignment jobs distribution linearly reduces the time spent on base-pair level alignments with increased chunks.
+	The CO2 consumption is not influenced by the number of chunks \red{(Figure 2)}.
+		
+	\subsection{Building a 1000 haplotypes chr19 pangenome graph}
+	
+	The Human Pangenome Resource Consortium (HPRC) recently built a draft human pangenome reference of 90 haplotypes \citep{Liao2023}. 
+	However, haplotype data for thousands of individuals already exists generated by the 1000 Genomes Project (1KGP) \citep{Durbin2010}. 
+	As a use case study, we used nf-core/pangenome to build a pangenome graph of 1000 chromosome 19 haplotypes \citep{Kuhnle2020} within 3 days. 
+	The CO2e was 22.52 kg. PGGB built the same graph within 7 days. 
+	In \red{Figure 3} the pangenome growth curve generated with PANACUS \citep{Liao2023} shows a growth of the number of nucleotides with an increasing number of haplotypes.
+	The size of the softcore pangenome does not change with increasing numbers of haplotypes.
+	One reason for this could be that the input sequences were generated from short read data leaving out complex regions like the centromere.
+	
+	\subsection{Building a 2146 sequences \textit{E. coli} pangenome graph}
+	
+	To evaluate the pipeline’s scalability, we built a pangenome graph of 2146 \textit{E. coli} sequences. 
+	nf-core/pangenome built the pangenome graph in 10 days, emitting 175.18 kg of CO2e. 
+	Due to wall clock time restrictions on our cluster, PGGB was not able to finish the graph construction within 30 days. 
+	To build a reasonable pangenome growth curve \red{(Figure 4)} we dropped all paths containing “plasmid” (130 in total) in their name. 
+	The softcore pangenome of the graph does not change with an increasing number of haplotypes (stable at ~3Mb of sequence), but the general growth curve is steep. 
+	One reason for such a high pangenomic growth is most likely horizontal gene transfer: 
+	Bacteria incorporate genes from each other at different locations in their genome. Other reasons could be sequencing errors or human contamination \citep{Breitwieser2019}.
+			
 
 	\section{Discussion}
-	\label{sec:discussion}
+	
+	We implemented nf-core/pangenome, an easy-to-install, portable, and cluster-scalable pipeline for the unbiased construction of pangenome variation graphs. 
+	It is the first pangenomic nf-core pipeline enabling the comparative analysis of gigabase-scale pangenome datasets. 
+	The pipeline’s core workflow steps were already successfully applied to \textit{Neisseria meningitidis} \citep{Yang2023}, wild grapes \citep{Cochetel2023}, humans \citep{Guarracino2023, Liao2023}, grapevines \citep{Guo2024}, taurines \citep{Milia2024}, and rats \citep{Villani2024} underpinning the community effort to focus on a best-practice workflow to create reference-unbiased and sequence complete pangenome graphs. 
+	The modular DSL2 pipeline structure eases the exchange of key processes with alternative tools, the extent of the pipeline with new tools, and the integration of parts of the pipeline with other (sub-)workflows.
+	
+	We have shown that we are able to perform all-vs-all base pair level alignments of thousands of sequences. 
+	When executed on an HPC, nf-core/pangenome’s parallel workflow accelerates graph construction compared to PGGB. 
+	PGGB’s inability to assign individual computational resources to each pipeline step leads to the allocation of one whole node of an HPC, despite the fact that some processes can only make use of one thread. 
+	This blocks valuable CPU cycles for other users working on the same HPC and ultimately can lead to additional costs, or, as was shown for \textit{E. coli}, to an inability to finish the graph construction in one go. 
+	In contrast, utilizing the power of workflow management systems, nf-core/pangenome does not have such limitations: 
+	Nextflow’s process management enables the optimal workload of given compute resources which can be especially important when running a pipeline in a commercial cloud like AWS. 
+	Such savings become increasingly important when one has to iterate the graph construction several times in order to ensure that the built graph best models the biology of the input sequences. 
+	For example, the PGGB HPRC graph construction was iterated 88 times \citep{Liao2023}.
+	
+	Competing pipelines don’t use any workflow management system to connect their processes \citep{Chin2023}, or their workflow language of choice is e.g. Toil \citep{Vivian2017, Hickey2023} which makes them less user-friendly, less cluster efficient, and less portable \citep{Wratten2021}.
+	nf-core/pangenome is currently the only pangenomics pipeline that is optionally monitoring its CO2 footprint. 
+	The measurements have shown that constructing extensive pangenome graphs, such as the 2146 \textit{E. coli} graph, requires a considerable amount of energy. 
+	Therefore, before executing environmentally questionable experiments, we would recommend thoroughly assessing both the rationale and the methodology. 
+	One computationally expensive part is the POA phase of SMOOTHXG. 
+	Adjusting SMOOTHXG with architecture-specific compilation would result in a speedup of approximately 10 times for this specific POA phase. 
+	Progress towards implementing such an enhancement is currently underway (\href{https://github.com/pangenome/smoothxg/issues/208}{https://github.com/pangenome/smoothxg/issues/208}).
+	
+	Although, we expect our pipeline to scale well for future pangenome graph construction challenges, such as for the next HPRC phase which targets 300 individuals, there still is potential for further optimization: 
+	IMplicit Pangenome Graph (IMPG) (\href{https://github.com/ekg/impg}{https://github.com/ekg/impg}), a tool that extracts homologous loci from all genomes mapped to a specific target region. 
+	This would allow us to break the whole genome multiple alignments into smaller pieces, construct a pangenome graph for each piece, and lace these together into a full graph with \href{https://github.com/pangenome/gfalace}{https://github.com/pangenome/gfalace}. 
+	Our first trials (\href{https://hackmd.io/vh0Ap65uQTm40DdleA-Oow}{https://hackmd.io/vh0Ap65uQTm40DdleA-Oow}) suggest following this direction.
+	
+	We believe that the pipeline or parts of it will enhance existing single linear reference analysis methods to explore whole population variation instead of focusing on one reference only. We envision for the future that pangenome construction pipelines, like nf-core/pangenome, will play a pivotal role in studying whole populations, single-cell whole genome sequencing analysis, and, for example, specifically when it comes to the construction of personalized (medical) pangenome references \citep{Sirn2023}. 
 
 	\section*{Acknowledgments}
 
-	We thank Matthias Seybold from the Quantitative Biology Center for maintaining the Core Facility Cluster.
+	We thank Matthias Seybold from the Quantitative Biology Center for
+	maintaining the Core Facility Cluster. 
+	We thank Sabrina Krakau from the Quantitative Biology Center for giving feedback to the nf-co2footprint plugin section. 
+	We are grateful to the nf-core community for their support during the implementation of the pipeline. 
+	From the nf-core community, we want to thank Matthias Hörtenhuber, Maxime Garcia, Susanne Jodoin, Julia Mir Petrol, Adam Talbot, and Gisela Gabernet specifically. 
+	We are grateful for extensive support of PANACUS from Daniel Dörr.
+
 	
 	\section*{Funding}
 	
-	S.H. acknowledges funding from the Central Innovation Programme (ZIM) for SMEs of the Federal Ministry for Economic Affairs and Energy of Germany.
-	S.N. acknowledges Germany’s Excellence Strategy (CMFI), EXC-2124 and (iFIT)—EXC 2180–390900677.
-	This work was supported by the BMBF-funded de.NBI Cloud within the German Network for Bioinformatics Infrastructure (de.NBI) (031A532B, 031A533A, 031A533B, 031A534A, 031A535A, 031A537A, 031A537B, 031A537C, 031A537D and 031A538A).
-	A.G. acknowledges efforts by Nicole Soranzo to establish a pangenome research unit at the Human Technopole in Milan, Italy.
-	JNM.S., J.L., Z.Z., P.P., and E.G. acknowledge funding from the NSF PPoSS Award \#2118709. The authors gratefully acknowledge support from National Institutes of Health/NIDA U01DA047638 (E.G.), National Institutes of Health/NIGMS R01GM123489 (E.G. and P.P.)
 	
 	\section*{Competing interests}
-	Author J.H. is employed by Computomics GmbH.
+	Author L.H. is employed by LaminLabs.
 	
 	\section*{Software and data availability}
 	
-	Software versions, code, and links to data used to prepare this manuscript can be found at \url{https://github.com/pangenome/sorting-paper}.
-	Animations of the algorithm are deposited at \url{https://doi.org/10.5281/zenodo.8288999}.
+	Code and links to data resources used to build this manuscript and its figures, can be found in the paper’s public repository: \href{https://github.com/subwaystation/pangenome-paper}{https://github.com/subwaystation/pangenome-paper}.
 		
 	\bibliographystyle{natbib}
 	
