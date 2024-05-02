@@ -83,24 +83,31 @@
     
 	\author[Heumos, Guarracino \textit{et~al}.]{
         Simon~Heumos\,$^{\orcidlink{0000-0003-3326-817X}1,2,3,4,*}$,
-        Andrea~Guarracino\,$^{\orcidlink{0000-0001-9744-131X}5,6,}$,
-        Sven Nahnsen\,$^{\orcidlink{0000-0002-4375-0691}1,2,3,4,*}$,
-        Pjotr Prins\,$^{\orcidlink{0000-0002-8021-9162}5}$,
-        Erik~Garrison\,$^{\orcidlink{0000-0003-3821-631X}5}$
+        Michael~F.~Heuer\,$^{\orcidlink{0000-0002-9052-6000}}$,
+        Friederike~Hanssen\,$^{\orcidlink{0009-0001-9875-5262}1,2,3,4}$,
+        Lukas~Heumos\,$^{\orcidlink{0000-0002-8937-3457}5,6,7}$,
+        Andrea~Guarracino\,$^{\orcidlink{0000-0001-9744-131X}8,9,}$,
+        Peter~Heringer\,$^{\orcidlink{0009-0005-5985-2317}1,2,3,4}$,
+        Philipp~Ehmele\,$^{\orcidlink{0000-0001-5945-7839}5}$,
+        Pjotr Prins\,$^{\orcidlink{0000-0002-8021-9162}8}$,
+        Erik~Garrison\,$^{\orcidlink{0000-0003-3821-631X}8}$,
+        Sven Nahnsen\,$^{\orcidlink{0000-0002-4375-0691}1,2,3,4,*}$
     }
 
     \address{
-        $^1$Quantitative Biology Center (QBiC), University of Tübingen, Tübingen 72076, Germany \\
-        $^2$Biomedical Data Science, Department of Computer Science, University of Tübingen, Tübingen 72076, Germany \\
-        $^3$M3 Research Center, University Hospital Tübingen, Tübingen 72076 , Germany \\
-        $^4$Institute for Bioinformatics and Medical Informatics (IBMI), University of Tübingen, Tübingen 72076, Germany \\
-        $^5$Department of Genetics, Genomics and Informatics, University of Tennessee Health Science Center, Memphis, TN 38163, USA \\
-        $^6$Genomics Research Centre, Human Technopole, Milan 20157, Italy \\
+	$^1$Quantitative Biology Center (QBiC) Tübingen, University of Tübingen, Tübingen, Germany \\ 
+	$^2$Biomedical Data Science, Dept. of Computer Science, University of Tübingen, Tübingen, Germany \\ 
+	$^3$M3 Research Center, University Hospital Tübingen, Tübingen, Germany \\ 
+	$^4$Institute for Bioinformatics and Medical Informatics (IBMI), Eberhard-Karls University of Tübingen, Tübingen, Germany \\ 
+	$^5$Institute of Computational Biology, Department of Computational Health, Helmholtz Munich, Germany \\ 
+	$^6$Comprehensive Pneumology Center with the CPC-M bioArchive, Helmholtz Zentrum Munich, Member of the German Center for Lung Research (DZL), Munich, Germany \\ 
+	$^7$TUM School of Life Sciences Weihenstephan, Technical University of Munich, Freising, Germany \\
+	$^{8}$Department of Genetics, Genomics and Informatics, University of Tennessee Health Science Center, 71 S Manassas St, Memphis, 38163, Tennessee, USA \\ 
+	$^{9}$Human Technopole, Viale Rita Levi-Montalcini 1, 20157, Milan, Italy \\
     }
 
     \corresp{
         $^\ast$To whom correspondence should be addressed. \\
-        $^{\dagger}$The authors wish it to be known that, in their opinion, the first two authors should be regarded as Joint First Authors.\
     }
 
     \history{Received on XXXXX; revised on XXXXX; accepted on XXXXX}
@@ -118,7 +125,7 @@
 	nf-core/pangenome is implemented in Nextflow and follows the nf-core best practice development guidelines. 
 	Providing all software dependencies in biocontainers makes the pipeline portable and easy to install on high-performance computing environments. 
 	In contrast to PGGB, this allows nf-core/pangenome to distribute the quadratically complex all-to-all base-level alignments across nodes of a cluster. 
-	Evaluating 1024 \textit{E. coli} haplotypes, the time spent on base-pair level alignments is reduced linearly with an increase in alignment problem chunks. 
+	%Evaluating 1024 \textit{E. coli} haplotypes, the time spent on base-pair level alignments is reduced linearly with an increase in alignment problem chunks. 
 	To demonstrate the scalability of nf-core/pangenome, we built pangenome graphs of 1000 chromosome 19 human haplotypes, and of 2146 \textit{E. coli} sequences. nf-core/pangenome was two to three times faster compared to PGGB while not increasing the greenhouse gas emissions.
 	\\
 	\textbf{Availability:}
@@ -205,14 +212,14 @@
 	
 	nf-core/pangenome is written in Nextflow using its latest domain-specific language (DSL) 2 syntax which facilitates a modular pipeline structure. 
 	Each software tool is an individual process that is implemented in its own module (\href{https://nf-co.re/docs/contributing/modules}{https://nf-co.re/docs/contributing/modules}). 
-	Processes are concatenated into subworkflows (\url{https://nf-co.re/docs/contributing/subworkflows}). 
-	Developed with the nf-core framework, the pipeline follows a set of best-practice guidelines ensuring high-quality development, maintenance, and testing standards. Specifically, we provide community support via a dedicated Slack channel (\url{https://nfcore.slack.com/channels/pangenome}), GitHub issues, and detailed documentation (\url{https://nf-co.re/pangenome/1.1.2/docs/usage}).
-	Versioning and portability are enabled through (a) semantic versioning (\url{https://semver.org/}) of the pipeline via tagged releases on GitHub, (b) packaging software dependencies in archivable containers so that the software compute environment is the same across different systems, and (c) summarizing software versions and parameters in the MultiQC report of the pipeline. 
+	Processes are concatenated into subworkflows (\href{https://nf-co.re/docs/contributing/subworkflows}{https://nf-co.re/docs/contributing/\\subworkflows}). 
+	Developed with the nf-core framework, the pipeline follows a set of best-practice guidelines ensuring high-quality development, maintenance, and testing standards. Specifically, we provide community support via a dedicated Slack channel (\href{https://nfcore.slack.com/channels/pangenome}{https://nfcore.slack.com/channels/pangenome}), GitHub issues, and detailed documentation (\href{https://nf-co.re/pangenome/1.1.2/docs/usage}{https://nf-co.re/pangenome/\\1.1.2/docs/usage}).
+	Versioning and portability are enabled through (a) semantic versioning (\href{https://semver.org/}{https://semver.org/}) of the pipeline via tagged releases on GitHub, (b) packaging software dependencies in archivable containers so that the software compute environment is the same across different systems, and (c) summarizing software versions and parameters in the MultiQC report of the pipeline. 
 	nf-core/ pangenome uses biocontainers to facilitate portability across different computing resources like HPC clusters, cloud platforms, or local machines. 
 	Code changes are evaluated with GitHub Actions’ continuous integration (CI) using a pipeline-specific small test data set. 
 	For each new pipeline release, a full-size test is run on Amazon Web Services (AWS) validating the code integrity and cloud compatibility of real-world data sets.
 	Specifically, a pangenome graph is created from the 8 Saccharomyces cerevisiae strains of the Yeast Population Reference Panel (YPRP) (Yue and Liti 2018). 
-	The results of such a run are available on the nf-core webpage (\url{https://nf-co.re/pangenome/1.1.2/results/pangenome/results-0e8a38734ea3c0397f94416a0146a2972fe2db8b}). 
+	The results of such a run are available on the nf-core webpage (\href{https://nf-co.re/pangenome/1.1.2/results/pangenome/results-0e8a38734ea3c0397f94416a0146a2972fe2db8b}{https://nf-co.re/pangenome/1.1.2/results/pangenome/results-0e8a38734ea3c0397f9\\4416a0146a2972fe2db8b}). 
 	Because we implemented our processes using DSL2 nf-core/modules (\href{https://github.com/nf-core/modules}{https://github.com/nf-core/modules}), they can be distributed easily to other users to share commonly used processes or subworkflows across pipelines. This boosts the reuse of existing work done by the community to be integrated into future pipelines.
 	
 	\subsection{Compute environment}
@@ -289,6 +296,12 @@
 	Our first trials (\href{https://hackmd.io/vh0Ap65uQTm40DdleA-Oow}{https://hackmd.io/vh0Ap65uQTm40DdleA-Oow}) suggest following this direction.
 	
 	We believe that the pipeline or parts of it will enhance existing single linear reference analysis methods to explore whole population variation instead of focusing on one reference only. We envision for the future that pangenome construction pipelines, like nf-core/pangenome, will play a pivotal role in studying whole populations, single-cell whole genome sequencing analysis, and, for example, specifically when it comes to the construction of personalized (medical) pangenome references \citep{Sirn2023}. 
+	
+	%\vspace{-0.5cm}
+	
+	\section*{Software and data availability}
+	
+	Code and links to data resources used to build this manuscript and its figures, can be found in the paper’s public repository: \href{https://github.com/subwaystation/pangenome-paper}{https://github.com/subwaystation/pangenome-paper}.
 
 	\section*{Acknowledgments}
 
@@ -306,9 +319,19 @@
 	\section*{Competing interests}
 	Author L.H. is employed by LaminLabs.
 	
-	\section*{Software and data availability}
-	
-	Code and links to data resources used to build this manuscript and its figures, can be found in the paper’s public repository: \href{https://github.com/subwaystation/pangenome-paper}{https://github.com/subwaystation/pangenome-paper}.
+%	\section*{Author contributions}
+%	
+%	\emph{Project conception}: Simon Heumos, Michael L. Heuer, Sven Nahnsen \\ 
+%	\emph{Software development}: Simon Heumos, Michael L. Heuer, Lukas Heumos, Andrea Guarracino, Peter Heringer, Philipp Ehmele \\ 
+%	\emph{Experimental design}: Simon Heumos \\ 
+%	\emph{Experimental execution}: Simon Heumos \\ 
+%	\emph{Paper writing}: Simon Heumos \\ 
+%	\emph{Paper editing}: Simon Heumos, Friederike Hanssen, Lukas Heumos, Andrea Guarracino, Sven Nahnsen \\ 
+%	\emph{Documentation}: Simon Heumos \\ 
+%	\emph{Software testing}: Simon Heumos, Michael L. Heuer, Friederike Hanssen \\ 
+%	\emph{Software review}: Friederike Hanssen \\ 
+%	\emph{Project guidance}: Pjotr Prins, Erik Garrison, Sven Nahnsen \\ 
+%	\emph{HPC resources}: Sven Nahnsen \\
 		
 	\bibliographystyle{natbib}
 	
