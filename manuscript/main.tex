@@ -164,7 +164,7 @@
 	\section{Material and Methods}
 	
 	\subsection{Pipeline overview}
-	The pipeline’s (Fig. \ref{fig1:workflow}) input is a FASTA file compressed with \textit{bgzip} \citep{Li2009} containing the sequences to create the graph. 
+	The pipeline’s (Fig. \ref{fig:workflow}) input is a FASTA file compressed with \textit{bgzip} \citep{Li2009} containing the sequences to create the graph. 
 	Sequence names should follow the Pangenome Sequence Naming specification (PanSN-spec) \citep{pansn-spec}. 
 	The primary output is a pangenome variation graph \citep{Garrison:2018} in the Graphical Fragment Assembly (GFA) format version 1 \citep{GFA}.
 	
@@ -172,7 +172,7 @@
 
 	\subsubsection{Core workflow}
 	
-	The core workflow of nf-core/pangenome is an exact mirror of PGGB (Fig. \ref{fig1:workflow}).
+	The core workflow of nf-core/pangenome is an exact mirror of PGGB (Fig. \ref{fig:workflow}).
 	The pipeline comes with additional enhancements: (a) All concurrent processes can be run in parallel. (b) Each process can be given individual computing resources. 
 	This results in efficient resource management, especially compared to PGGB, which uses the same resources for all steps of the pipeline. 
 	
@@ -207,7 +207,7 @@
 	The resulting Pairwise mApping Format (PAF) file is split into chunks of equal problem size. 
 	The number of chunks is manually selected. 
 	The value can be guided by the number and size of the input sequences, and by the available hardware. 
-	Assuming the number of chunks equals the number of nodes on a cluster, then potentially each base-pair level alignment (WFMASH ALIGN) can be run in parallel on each node  (Fig. \ref{fig1:workflow}, cyan tubes). 
+	Assuming the number of chunks equals the number of nodes on a cluster, then potentially each base-pair level alignment (WFMASH ALIGN) can be run in parallel on each node  (Fig. \ref{fig:workflow}, cyan tubes). 
 	All resulting PAFs are then forwarded to the pipeline’s core workflow which is continued at the SEQWISH process.
 	
 	\subsection{Implementation}
@@ -345,6 +345,10 @@
 	\beginsupplement
 	
 	\section{Supplement}
+	
+	\subsection{Emissions}
+	
+	\include{fig_emissions.tex}
 	
 	\subsection{Chromosome community detection}
 	
