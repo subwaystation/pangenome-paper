@@ -9,10 +9,12 @@
 
 \usepackage{siunitx}
 
+%TODO FIX THIS
 % singlelinecheck=false puts subcaptions on the left
 %\usepackage[singlelinecheck=false]{subcaption}
 \usepackage[caption=false]{subfig}
 \floatsetup[figure]{style=plain,subcapbesideposition=top}
+%TODO FIX THIS
 
 \usepackage{amsthm}
 \theoremstyle{definition}
@@ -343,6 +345,33 @@
 	\beginsupplement
 	
 	\section{Supplement}
+	
+	\subsection{Chromosome community detection}
+	
+	Eukaryotic genomes are usually organized into chromosomes. 
+	Taking this into account during graph construction, the chromosome groupings from the input sequence are examined. 
+	Specifically, the homologies detected in the all-to-all WFMASH mapping step are put into the Leiden \citep{Traag2019} clustering algorithm. 
+	The edge weight is $mapped\_length * mapped\_identity$. 
+	For each of the resulting communities, the nf-core/pangenome core workflow is executed in parallel. 
+	The communal graphs are joined into one and a final round of quality control is applied (see Fig~\ref{fig1:workflow}, brown tubes). 
+	In practice, this works well for large input sequences with a large mapping length (>1Mb) filter, which was demonstrated by \cite{Guarracino2023} when exploring the recombination between heterologous human acrocentric chromosomes.
+	
+	\subsection{1KGP chromosome 19 data set}
+	
+	The FASTA of the chromosome 19 data set was downloaded in December 2023 from \href{http://dolomit.cs.tu-dortmund.de/chr19.1000.fa.xz}{http://dolomit.cs.tu-dortmund.de/chr19.1000.fa.xz}. The data set is described in \citep{Kuhnle2020}. Statistics of the built pangenome graph can be seen in Supplementary Fig. ~\ref{fig:chr19_multiqc}. The initial graph contains over 97\% of Ns. We applied \textit{odgi crush} (odgi version 0.8.6), which crushes consecutive Ns of all nodes containing Ns into just one N per node, to the 1KGP chromosome 19 pangenome graph. This brings down the number of Ns from over 3B to exactly 6000 (Supplementary Fig.~\ref{fig:chr19_multiqc}). 
+	The 2D visualization Supplementary Fig. \ref{fig:chr19_2D}) is perfectly linear without any large SVs present hinting that only short-read data was used to create the haplotype sequences.
+	In contrast, the 2D layout of the HPRC PGGB chromosome 19 pangenome graph \citep{Heumos2023} clearly presents SVs, especially in the centromere's location. Investigating these complex regions of a human chromosome is only possible when using long-read assemblies for graph construction.
+	
+	\include{fig_chr19_multiqc}
+	\include{fig_chr19_2D}
+	
+	\subsection{\textit{E.coli} data set}
+	
+	The 2146 full length E. coli sequences originate from Genbank \citep{Sayers2021} and were downloaded ~18 months ago. The initial pangenome consisted of 2 graphical components (\red{Supplementary Figure 7}). This means that no strong homologies were found in some sequences. There can be many reasons for additional graph components: (a) The chosen sequence identity during the WFMASH mapping was not low enough. Although we went for a low 90\% sequence identity (as was done by \cite{Garrison2023}), we still observe this additional graph component, so its sequence must be quite dissimilar to all other sequences. (b) There is human contamination in the bacterial sequences \citep{Breitwieser2019}. (c) Some sequences from GenBank may be of a low quality or were misassembled. We then used odgi explode to extract the largest graphical component, applied \textit{odgi crush} and dropped all paths containing “plasmid” in their path name with \textit{odgi paths}. This left us with one component and 2013 paths.
+	In the 2D visualization, we observe a highly connected graph (\red{Supplementary Figure 8}). All the reasons mentioned above, but especially horizontal gene transfer could explain this phenomenon. Therefore, there are a lot of edge crossings in the pangenome graph. The long stretches is dangling sequence. We speculate that here the 88 thousand Ns could play role.
+	
+	\include{fig_ecoli_multiqc}
+	\include{fig_ecoli_2D}
 	
 
 \end{document}
