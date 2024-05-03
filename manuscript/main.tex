@@ -12,6 +12,7 @@
 %TODO FIX THIS
 % singlelinecheck=false puts subcaptions on the left
 %\usepackage[singlelinecheck=false]{subcaption}
+\usepackage{graphicx}
 \usepackage[caption=false]{subfig}
 \floatsetup[figure]{style=plain,subcapbesideposition=top}
 %TODO FIX THIS
@@ -52,7 +53,7 @@
 \usepackage{booktabs}
 \usepackage{siunitx}
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
-\usepackage{float}
+\usepackage{stfloats}
 \usepackage{hyperref}
 %\floatstyle{plaintop}
 %\restylefloat{table}
@@ -83,7 +84,7 @@
     %\title[Genome-guided pangenome graph layouts]{Genome-guided pangenome graph layouts}
 	%\title[Sequence-guided pangenome graph layouts]{Sequence-guided pangenome graph layouts}
     
-	\author[Heumos, Guarracino \textit{et~al}.]{
+	\author[Heumos \textit{et~al}.]{
         Simon~Heumos\,$^{\orcidlink{0000-0003-3326-817X}1,2,3,4,*}$,
         Michael~F.~Heuer\,$^{\orcidlink{0000-0002-9052-6000}}$,
         Friederike~Hanssen\,$^{\orcidlink{0009-0001-9875-5262}1,2,3,4}$,
@@ -168,7 +169,7 @@
 	Sequence names should follow the Pangenome Sequence Naming specification (PanSN-spec) \citep{pansn-spec}. 
 	The primary output is a pangenome variation graph \citep{Garrison:2018} in the Graphical Fragment Assembly (GFA) format version 1 \citep{GFA}.
 	
-	\include{fig_panel}
+	\input{fig_panel}
 
 	\subsubsection{Core workflow}
 	
@@ -200,16 +201,6 @@
 	Optionally, nf-core/pangenome calls variants against any (reference) path(s) in the graph using vg deconstruct \citep{Garrison:2018}. 
 	Finally, graph statistics and diagnostic visualizations are summarized in a MultiQC \citep{Ewels_2016} report.
 	
-	\subsubsection{Alignment jobs distribution}
-	
-	The computationally heavy all versus all base-pair level alignments can be distributed across nodes of a cluster: 
-	First, WFMASH is run in mapping mode (WFMASH MAP), finding all sequence homologies using approximate alignments. 
-	The resulting Pairwise mApping Format (PAF) file is split into chunks of equal problem size. 
-	The number of chunks is manually selected. 
-	The value can be guided by the number and size of the input sequences, and by the available hardware. 
-	Assuming the number of chunks equals the number of nodes on a cluster, then potentially each base-pair level alignment (WFMASH ALIGN) can be run in parallel on each node  (Fig. \ref{fig:workflow}, cyan tubes). 
-	All resulting PAFs are then forwarded to the pipeline’s core workflow which is continued at the SEQWISH process.
-	
 	\subsection{Implementation}
 	
 	nf-core/pangenome is written in Nextflow using its latest domain-specific language (DSL) 2 syntax which facilitates a modular pipeline structure. 
@@ -224,28 +215,14 @@
 	The results of such a run are available on the nf-core webpage (\href{https://nf-co.re/pangenome/1.1.2/results/pangenome/results-0e8a38734ea3c0397f94416a0146a2972fe2db8b}{https://nf-co.re/pangenome/1.1.2/results/pangenome/results-0e8a38734ea3c0397f9\\4416a0146a2972fe2db8b}). 
 	Because we implemented our processes using DSL2 nf-core/modules (\href{https://github.com/nf-core/modules}{https://github.com/nf-core/modules}), they can be distributed easily to other users to share commonly used processes or subworkflows across pipelines. This boosts the reuse of existing work done by the community to be integrated into future pipelines.
 	
-	\subsection{Compute environment}
-	
-	We applied the nf-core/pangenome pipeline v1.1.2 to various inputs evaluating both the scalability of the all-vs-all alignment step as well as the pipeline as a whole. 
-	We used Nextflow version 23.10.1.5891 and Singularity version 3.8.7-1.el8 for each pipeline run. 
-	Experiments were conducted on our core facility cluster (CFC) with 24 Regular nodes (32 cores / 64 threads with two AMD EPYC 7343 processors with 512 GB RAM and 2 TB scratch space) and 4 HighMem nodes (64 cores / 128 threads with two AMD EPYC 7513 processors with 2048 GB RAM and 4TB scratch space). 
-	Each Nextflow process was given at most 64 threads. This ensures a fair run time comparison with PGGB v0.5.4 which was always executed on one Regular node via Slurm.
-	
-	\subsection{Estimation of the carbon footprint of pipeline runs}
-	
-	We also estimated the carbon dioxide equivalent (CO2e) emissions of each nf-core/pangenome pipeline run using the nf-co2footprint Nextflow plugin (\href{https://github.com/nextflow-io/nf-co2footprint}{https://github.com/nextflow-io/nf-co2footprint}) v1.0.0-beta. 
-	Using the Nextflow resource usage metrics and information about the power consumption of the compute system, the plugin first estimates the energy consumption for each pipeline task. 
-	It then uses the consumed energy's location-specific carbon intensity to estimate the respective CO2e emission.
-	The calculations are based on the carbon footprint computation method developed in the Green Algorithms project (\href{www.green-algorithms.org}{www.green-algorithms.org}) \citep{Lannelongue2021}.
-	
 	\section{Results}
 	
 	\subsection{Alignment jobs distribution evaluation}
 	
 	Generating all-vs-all alignments is a computationally quadratic problem. 
-	To evaluate nf-core/pangenome’s alignment jobs scalability, we applied it to 1024 \textit{E. coli} genomes with varying numbers of chunks. 
+	To evaluate nf-core/pangenome’s alignment jobs scalability (detailed in Suppl. ~\ref{aln_jobs_dist}), we applied it to 1024 \textit{E. coli} genomes with varying numbers of chunks. 
 	nf-core/pangenome’s alignment jobs distribution linearly reduces the time spent on base-pair level alignments with increased chunks.
-	The CO2 consumption is not influenced by the number of chunks \red{(Figure 2)}.
+	The CO2 consumption is not influenced by the number of chunks (Suppl. Fig.~\ref{fig:emissions}).
 		
 	\subsection{Building a 1000 haplotypes chr19 pangenome graph}
 	
@@ -253,7 +230,7 @@
 	However, haplotype data for thousands of individuals already exists generated by the 1000 Genomes Project (1KGP) \citep{Durbin2010}. 
 	As a use case study, we used nf-core/pangenome to build a pangenome graph of 1000 chromosome 19 haplotypes \citep{Kuhnle2020} within 3 days. 
 	The CO2e was 22.52 kg. PGGB built the same graph within 7 days. 
-	In \red{Figure 3} the pangenome growth curve generated with PANACUS \citep{Liao2023} shows a growth of the number of nucleotides with an increasing number of haplotypes.
+	In Fig.~\ref{fig:hist_chr19} the pangenome growth curve generated with PANACUS \citep{Liao2023} shows a growth of the number of nucleotides with an increasing number of haplotypes.
 	The size of the softcore pangenome does not change with increasing numbers of haplotypes.
 	One reason for this could be that the input sequences were generated from short read data leaving out complex regions like the centromere.
 	
@@ -262,11 +239,11 @@
 	To evaluate the pipeline’s scalability, we built a pangenome graph of 2146 \textit{E. coli} sequences. 
 	nf-core/pangenome built the pangenome graph in 10 days, emitting 175.18 kg of CO2e. 
 	Due to wall clock time restrictions on our cluster, PGGB was not able to finish the graph construction within 30 days. 
-	To build a reasonable pangenome growth curve \red{(Figure 4)} we dropped all paths containing “plasmid” (130 in total) in their name. 
+	To build a reasonable pangenome growth curve (Fig.~\ref{fig:hist_ecoli}) we dropped all paths containing “plasmid” (130 in total) in their name. 
 	The softcore pangenome of the graph does not change with an increasing number of haplotypes (stable at ~3Mb of sequence), but the general growth curve is steep. 
 	One reason for such a high pangenomic growth is most likely horizontal gene transfer: 
 	Bacteria incorporate genes from each other at different locations in their genome. Other reasons could be sequencing errors or human contamination \citep{Breitwieser2019}.
-			
+
 
 	\section{Discussion}
 	
@@ -317,6 +294,7 @@
 	
 	\section*{Funding}
 	
+	 S.H. acknowledges funding from the Central Innovation Programme (ZIM) for SMEs of the Federal Ministry for Economic Affairs and Energy of Germany. This work was supported by the BMBF-funded de.NBI Cloud within the German Network for Bioinformatics Infrastructure (de.NBI) (031A532B, 031A533A, 031A533B, 031A534A, 031A535A, 031A537A, 031A537B, 031A537C, 031A537D, 031A538A). A.G. acknowledges support from the Human Technopole. S.N. acknowledges support from iFIT funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany’s Excellence Strategy—EXC 2180—390900677 and CMFI under EXC 2124–390838134.
 	
 	\section*{Competing interests}
 	Author L.H. is employed by LaminLabs.
@@ -346,10 +324,6 @@
 	
 	\section{Supplement}
 	
-	\subsection{Emissions}
-	
-	\include{fig_emissions.tex}
-	
 	\subsection{Chromosome community detection}
 	
 	Eukaryotic genomes are usually organized into chromosomes. 
@@ -357,25 +331,52 @@
 	Specifically, the homologies detected in the all-to-all WFMASH mapping step are put into the Leiden \citep{Traag2019} clustering algorithm. 
 	The edge weight is $mapped\_length * mapped\_identity$. 
 	For each of the resulting communities, the nf-core/pangenome core workflow is executed in parallel. 
-	The communal graphs are joined into one and a final round of quality control is applied (see Fig~\ref{fig1:workflow}, brown tubes). 
+	The communal graphs are joined into one and a final round of quality control is applied (see Fig~\ref{fig:workflow}, brown tubes). 
 	In practice, this works well for large input sequences with a large mapping length (>1Mb) filter, which was demonstrated by \cite{Guarracino2023} when exploring the recombination between heterologous human acrocentric chromosomes.
+	
+	\subsection{Compute environment}
+	
+	We applied the nf-core/pangenome pipeline v1.1.2 to various inputs evaluating both the scalability of the all-vs-all alignment step as well as the pipeline as a whole. 
+	We used Nextflow version 23.10.1.5891 and Singularity version 3.8.7-1.el8 for each pipeline run. 
+	Experiments were conducted on our core facility cluster (CFC) with 24 Regular nodes (32 cores / 64 threads with two AMD EPYC 7343 processors with 512 GB RAM and 2 TB scratch space) and 4 HighMem nodes (64 cores / 128 threads with two AMD EPYC 7513 processors with 2048 GB RAM and 4TB scratch space). 
+	Each Nextflow process was given at most 64 threads. This ensures a fair run time comparison with PGGB v0.5.4 which was always executed on one Regular node via Slurm.
+	
+	\subsection{Estimation of the carbon footprint of pipeline runs}
+	
+	We also estimated the carbon dioxide equivalent (CO2e) emissions of each nf-core/pangenome pipeline run using the nf-co2footprint Nextflow plugin (\href{https://github.com/nextflow-io/nf-co2footprint}{https://github.com/nextflow-io/nf-co2footprint}) v1.0.0-beta. 
+	Using the Nextflow resource usage metrics and information about the power consumption of the compute system, the plugin first estimates the energy consumption for each pipeline task. 
+	It then uses the consumed energy's location-specific carbon intensity to estimate the respective CO2e emission.
+	The calculations are based on the carbon footprint computation method developed in the Green Algorithms project (\href{www.green-algorithms.org}{www.green-algorithms.org}) \citep{Lannelongue2021}.
+	
+	\subsection{Alignment jobs distribution}
+	\label{aln_jobs_dist}
+
+	The computationally heavy all versus all base-pair level alignments can be distributed across nodes of a cluster: 
+	First, WFMASH is run in mapping mode (WFMASH MAP), finding all sequence homologies using approximate alignments. 
+	The resulting Pairwise mApping Format (PAF) file is split into chunks of equal problem size. 
+	The number of chunks is manually selected. 
+	The value can be guided by the number and size of the input sequences, and by the available hardware. 
+	Assuming the number of chunks equals the number of nodes on a cluster, then potentially each base-pair level alignment (WFMASH ALIGN) can be run in parallel on each node  (Fig. \ref{fig:workflow}, cyan tubes). 
+	All resulting PAFs are then forwarded to the pipeline’s core workflow which is continued at the SEQWISH process.
+	
+	\input{fig_emissions.tex}
 	
 	\subsection{1KGP chromosome 19 data set}
 	
-	The FASTA of the chromosome 19 data set was downloaded in December 2023 from \href{http://dolomit.cs.tu-dortmund.de/chr19.1000.fa.xz}{http://dolomit.cs.tu-dortmund.de/chr19.1000.fa.xz}. The data set is described in \citep{Kuhnle2020}. Statistics of the built pangenome graph can be seen in Supplementary Fig. ~\ref{fig:chr19_multiqc}. The initial graph contains over 97\% of Ns. We applied \textit{odgi crush} (odgi version 0.8.6), which crushes consecutive Ns of all nodes containing Ns into just one N per node, to the 1KGP chromosome 19 pangenome graph. This brings down the number of Ns from over 3B to exactly 6000 (Supplementary Fig.~\ref{fig:chr19_multiqc}). 
-	The 2D visualization Supplementary Fig. \ref{fig:chr19_2D}) is perfectly linear without any large SVs present hinting that only short-read data was used to create the haplotype sequences.
+	The FASTA of the chromosome 19 data set was downloaded in December 2023 from \href{http://dolomit.cs.tu-dortmund.de/chr19.1000.fa.xz}{http://dolomit.cs.tu-dortmund.de/chr19.1000.fa.xz}. The data set is described in \citep{Kuhnle2020}. Statistics of the built pangenome graph can be seen in Supplementary Fig. ~\ref{fig:chr19_multiqc}. The initial graph contains over 97\% of Ns. We applied \textit{odgi crush} (odgi version 0.8.6), which crushes consecutive Ns of all nodes containing Ns into just one N per node, to the 1KGP chromosome 19 pangenome graph. This brings down the number of Ns from over 3B to exactly 6000 (Suppl. Fig.~\ref{fig:chr19_multiqc}). 
+	The 2D visualization (Suppl. Fig.~\ref{fig:chr19_2D}) is perfectly linear without any large SVs present hinting that only short-read data was used to create the haplotype sequences.
 	In contrast, the 2D layout of the HPRC PGGB chromosome 19 pangenome graph \citep{Heumos2023} clearly presents SVs, especially in the centromere's location. Investigating these complex regions of a human chromosome is only possible when using long-read assemblies for graph construction.
 	
-	\include{fig_chr19_multiqc}
-	\include{fig_chr19_2D}
+	\input{fig_chr19_multiqc}
+	\input{fig_chr19_2D}
 	
 	\subsection{\textit{E.coli} data set}
 	
-	The 2146 full length E. coli sequences originate from Genbank \citep{Sayers2021} and were downloaded ~18 months ago. The initial pangenome consisted of 2 graphical components (\red{Supplementary Figure 7}). This means that no strong homologies were found in some sequences. There can be many reasons for additional graph components: (a) The chosen sequence identity during the WFMASH mapping was not low enough. Although we went for a low 90\% sequence identity (as was done by \cite{Garrison2023}), we still observe this additional graph component, so its sequence must be quite dissimilar to all other sequences. (b) There is human contamination in the bacterial sequences \citep{Breitwieser2019}. (c) Some sequences from GenBank may be of a low quality or were misassembled. We then used odgi explode to extract the largest graphical component, applied \textit{odgi crush} and dropped all paths containing “plasmid” in their path name with \textit{odgi paths}. This left us with one component and 2013 paths.
-	In the 2D visualization, we observe a highly connected graph (\red{Supplementary Figure 8}). All the reasons mentioned above, but especially horizontal gene transfer could explain this phenomenon. Therefore, there are a lot of edge crossings in the pangenome graph. The long stretches is dangling sequence. We speculate that here the 88 thousand Ns could play role.
+	The 2146 full length E. coli sequences originate from Genbank \citep{Sayers2021} and were downloaded ~18 months ago. The initial pangenome consisted of 2 graphical components (Suppl. Fig.~\ref{fig:ecoli_multiqc}). This means that no strong homologies were found in some sequences. There can be many reasons for additional graph components: (a) The chosen sequence identity during the WFMASH mapping was not low enough. Although we went for a low 90\% sequence identity (as was done by \cite{Garrison2023}), we still observe this additional graph component, so its sequence must be quite dissimilar to all other sequences. (b) There is human contamination in the bacterial sequences \citep{Breitwieser2019}. (c) Some sequences from GenBank may be of a low quality or were misassembled. We then used odgi explode to extract the largest graphical component, applied \textit{odgi crush} and dropped all paths containing “plasmid” in their path name with \textit{odgi paths}. This left us with one component and 2013 paths.
+	In the 2D visualization, we observe a highly connected graph (Suppl. Fig.~\ref{fig:ecoli_2D}). All the reasons mentioned above, but especially horizontal gene transfer could explain this phenomenon. Therefore, there are a lot of edge crossings in the pangenome graph. The long stretches is dangling sequence. We speculate that here the 88 thousand Ns could play role.
 	
-	\include{fig_ecoli_multiqc}
-	\include{fig_ecoli_2D}
+	\input{fig_ecoli_multiqc}
+	\input{fig_ecoli_2D}
 	
 
 \end{document}
