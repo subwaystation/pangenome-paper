@@ -155,7 +155,7 @@
 	\section{Introduction}
 	The availability of high-quality collections of population-wide whole-genome assemblies \citep{Liao2023, Kang2023, Weller2023, Zhou2022, Liu2020, Leonard2022} offers new opportunities to study sequence evolution and variation within and between genomic populations. 
 	A challenge is simultaneously representing and analyzing hundreds to thousands of genomes at a gigabase scale. 
-	One solution here is a pangenome which models a population's entire set of genomic sequences \citep{Ballouz2019}. 
+	One solution here is a pangenome. It models a population's entire set of genomic sequences \citep{Ballouz2019}. 
 	In contrast to reference-based genomic approaches, which relate sequences to a linear genome, pangenomics relates each new sequence to all the others represented in the pangenome \citep{CompPan2016, Eizenga_2020, Sherman_2020} minimizing reference-bias. 
 	Pangenomes can be described as sequence graphs which store DNA sequences in nodes with edges connecting the nodes as they occur in the individual sequences \citep{Hein1989}. 
 	Genomes are encoded as paths traversing the nodes \citep{Garrison:2018}.
@@ -197,7 +197,7 @@
 	%SEQWISH can recapture homology relationships that may not be encoded in the initial alignments. 
 	%This allows us to randomly sparsify the mappings computed by WFMASH. 
 	%The applied heuristic is based on the Erdös-Rényi random graph model \citep{Bollobs2001}. 
-	We then normalize the graph with the variation graph simplification algorithm SMOOTHXG \citep{Garrison2023}.
+	We then normalize the graph with the variation graph simplification algorithm SMOOTHXG \citep{Garrison2023}:
 	A 1-dimensional (1D) graph embedding \citep{Heumos2023} orders the graphs’ nodes to best-match the nucleotide distances of the genomic paths of the graph.
 	%This considers the local spurious complexity inherent in the raw pairwise alignments. 
 	%If ignored, this could lead to difficulties in downstream processing of the graph.
@@ -208,7 +208,6 @@
 	The sequences of each segment are realigned with a local Multiple Sequence Alignment (MSA) kernel, partial order alignment (POA) \citep{Lee2002}.
 	Afterwards, the segments are laced back together into a variation graph. 
 	By default, the SMOOTHXG process is applied 3 times in order to smoothen the edge effects at the boundaries of the segments.
-	
 	Finally, we employ GFAFFIX \citep{Liao2023} to systematically condense redundant nodes within the graph.
 	%In the final normalization phase, we employ GFAFFIX \citep{Liao2023} to systematically condense redundant nodes within the graph. 
 	%Subsequently, the 1D graph embedding algorithm is reapplied to ensure a human-readable representation of the processed data. 
@@ -256,7 +255,7 @@
 	We implemented nf-core/pangenome, an easy-to-install, portable, and cluster-scalable pipeline for the unbiased construction of pangenome variation graphs. 
 	It is the first pangenomic nf-core pipeline enabling the comparative analysis of gigabase-scale pangenome datasets. 
 	The pipeline’s core workflow steps were already successfully applied to \textit{Neisseria meningitidis} \citep{Yang2023}, wild grapes \citep{Cochetel2023}, humans \citep{Guarracino2023, Liao2023}, grapevines \citep{Guo2024}, taurines \citep{Milia2024}, and rats \citep{Villani2024} underpinning the community effort to focus on a best-practice workflow to create reference-unbiased and sequence complete pangenome graphs. 
-	The modular DSL2 pipeline structure eases the exchange of key processes with alternative tools, the extent of the pipeline with new tools, and the integration of parts of the pipeline with other (sub-)workflows.
+	The modular domain-specific language (DSL) 2 pipeline structure eases the exchange of key processes with alternative tools, the extent of the pipeline with new tools, and the integration of parts of the pipeline with other (sub-)workflows.
 	
 	We have shown that we are able to perform all-vs-all base pair level alignments of thousands of sequences. 
 	When executed on an HPC, nf-core/pangenome’s parallel workflow accelerates graph construction compared to PGGB. 
@@ -284,7 +283,7 @@
 	%(\href{https://hackmd.io/vh0Ap65uQTm40DdleA-Oow}{https://hackmd.io/vh0Ap65uQTm40DdleA-Oow}) 
 	%suggest following this direction.
 	
-	We anticipate the pipeline, or its parts, will enhance current single linear reference analysis methods to explore whole population variation instead of focusing on one reference only. Looking ahead, pangenome construction pipelines like nf-core/pangenome will play a pivotal role in studying entire populations, single-cell whole genome sequencing analysis, and constructing personalized pangenome references \citep{Sirn2023}.
+	We anticipate the pipeline, or its parts, will enhance current single linear reference analysis methods to explore whole population variation instead of focusing on one reference only. Looking ahead, pangenome construction pipelines like nf-core/pangenome will play a pivotal role in studying entire populations, single-cell whole genome sequencing analysis, and constructing personalized (medical) pangenome references \citep{Sirn2023}.
 	%We believe that the pipeline or parts of it will enhance existing single linear reference analysis methods to explore whole population variation instead of focusing on one reference only. We envision for the future that pangenome construction pipelines, like nf-core/pangenome, will play a pivotal role in studying whole populations, single-cell whole genome sequencing analysis, and, for example, specifically when it comes to the construction of personalized (medical) pangenome references \citep{Sirn2023}. 
 	
 	%\vspace{-1.1cm}
