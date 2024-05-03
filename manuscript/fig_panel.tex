@@ -3,6 +3,7 @@
 	\includegraphics[width=\textwidth]{fig/pangenome_workflow.pdf}
 	\label{fig:workflow}
 	}
+	\vspace{-0.3cm}
 	\hfill
 	\sidesubfloat[Second subfigure]{%
 	\includegraphics[width=0.45\textwidth]{fig/chr19_histgrowth.pdf}
@@ -16,7 +17,9 @@
 	%\includegraphics[width=0.3\textwidth]{fig/chr19_histgrowth.pdf}
 	%\label{fig:hist_ecoli}
 	%}
-	\caption{\textbf{(a)} Schematic representation of the nf-core/pangenome workflow processes and detailed analysis steps. The input consists of one FASTA file containing all sequences. The pipeline comes with 3 major entry points: Community detection (1), alignment distribution (2), and core workflow (3). Optional community detection (1) is performed on the input sequences. If selected, the heavy all-to-all baise-pair level alignments (2) can be split into problems of equal size. nf-core/pangenome’s core workflow (3) is a direct mirror of PGGB. If running in community mode, all communal graphs are combined into one (4) and the subsequent quality control subworkflow is executed. The output is a pangenome graph in GFA format. \textbf{(b) + (c)} Pangenome growth curves of the built pangenome graphs. Growth type is defined as the minimum fraction of haplotypes that must share a graph feature after each time a haplotype is added to the growth histograph. $quorum>=0$: All sequences without any filtering are considered. $quorum>=10$: Sequences traversed by at least 10\% of the haplotypes. $quorum>=50$: Sequences traversed by at least 50\% of haplotypes. $quorum>=95$: Sequences traversed by 95\% of haplotypes. \textbf{(b)} Pangenome growth curve of the chromosome 19 pangenome graph of 1000 haplotypes. \textbf{(c)} Pangenome growth curve of the E. coli pangenome graph of 2013 haplotypes.
+	\vspace{-0.25cm}
+	\caption{\textbf{(a)} Schematic representation of the nf-core/pangenome workflow processes and detailed analysis steps. The input consists of one FASTA file containing all sequences. The pipeline comes with 3 major entry points: Community detection (1), alignment distribution (2), and core workflow (3). Optional community detection (1) is performed on the input sequences. If selected, the heavy all-to-all baise-pair level alignments (2) can be split into problems of equal size. nf-core/pangenome’s core workflow (3) is a direct mirror of PGGB. If running in community mode, all communal graphs are combined into one (4) and the subsequent quality control subworkflow is executed. The output is a pangenome graph in GFA format. \textbf{(b) + (c)} Pangenome growth curves of the built pangenome graphs. Growth type is defined as the minimum fraction of haplotypes that must share a graph feature after each time a haplotype is added to the growth histograph. $quorum>=0$: All sequences without any filtering are considered. $quorum>=10$: Sequences traversed by at least 10\% of the haplotypes. $quorum>=50$: Sequences traversed by at least 50\% of haplotypes. $quorum>=95$: Sequences traversed by 95\% of haplotypes. \textbf{(b)} Pangenome growth curve of the chromosome 19 pangenome graph of 1000 haplotypes. \textbf{(c)} Pangenome growth curve of the \textit{E. coli} pangenome graph of 2013 haplotypes.
 	}
 	\label{fig:panel}
 \end{figure*}
+\vspace{-0.3cm}
