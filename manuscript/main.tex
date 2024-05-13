@@ -121,11 +121,14 @@
 	\textbf{Motivation:}
 	Pangenome graphs offer a comprehensive way of capturing genomic variability across multiple genomes. 
 	However, current construction methods often introduce biases, excluding complex sequences or relying on references. 
-	The PanGenome Graph Builder (PGGB) addresses these issues. Yet, its bash implementation hinders deployment, resource optimization, and scalability for large-scale graph construction. 
+	The PanGenome Graph Builder (PGGB) addresses these issues. 
+	To date, though, there is no state-of-the-art pipeline allowing for easy deployment, efficient and dynamic use of available resources, and scalable usage at the same time.
+	%Yet, its bash implementation hinders deployment, resource optimization, and scalability for large-scale graph construction. 
 	\\
 	\textbf{Results:}
 	To overcome these limitations, we present \textit{nf-core/pangenome}, a reference-unbiased approach implemented in Nextflow following nf-core's best practices. 
 	Leveraging biocontainers ensures portability and seamless deployment in HPC environments. 
+	%SN: in any compute infrastructure, such as HPCs or clouds
 	Unlike PGGB, nf-core/pangenome distributes alignments across cluster nodes, enabling scalability. 
 	Demonstrating its efficiency, we constructed pangenome graphs for 1000 human chromosome 19 haplotypes and 2146 \textit{E. coli} sequences, achieving a two to threefold speedup compared to PGGB without increasing greenhouse gas emissions. \\
 	\textbf{Availability:}
@@ -167,6 +170,7 @@
 	PGGB iteratively refines an all-to-all whole-genome alignment graph that lets us explore sequence conservation and variation, infer phylogeny, and identify recombination events. 
 	PGGB was already extensively evaluated \citep{Garrison2023, Andreace2023} and applied to build the first draft human pangenome reference \citep{Liao2023}.
 	However, PGGB is implemented in bash: This (a) makes it difficult to deploy on HPC systems, (b) does not allow for a fine granular tuning of computing resources for different steps of the pipeline \citep{Sztuka2024}, and (c) limits its cluster scalability because PGGB can only use the resources of one node.
+	%SN: Given the high resource requirements of large-scale pangenomes, these limitations are significantly limiting broad applications.
 	
 	To compensate for that, we wrote \textit{nf-core/pangenome}, a reference-unbiased approach to construct pangenome graphs. 
 	Mirroring PGGB, nf-core/pangenome is implemented in Nextflow \citep{DiTommaso2017}.
