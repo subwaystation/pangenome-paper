@@ -169,8 +169,8 @@
 	One recent approach that overcomes such limitations is the PanGenome Graph Builder (PGGB) pipeline \citep{Garrison2023}. 
 	PGGB iteratively refines an all-to-all whole-genome alignment graph that lets us explore sequence conservation and variation, infer phylogeny, and identify recombination events. 
 	PGGB was already extensively evaluated \citep{Garrison2023, Andreace2023} and applied to build the first draft human pangenome reference \citep{Liao2023}.
-	However, PGGB is implemented in bash: This (a) makes it difficult to deploy on HPC systems, (b) does not allow for a fine granular tuning of computing resources for different steps of the pipeline \citep{Sztuka2024}, and (c) limits its cluster scalability because PGGB can only use the resources of one node.
-	%SN: Given the high resource requirements of large-scale pangenomes, these limitations are significantly limiting broad applications.
+	However, PGGB is implemented in bash: This (a) makes it difficult to deploy on HPC systems, (b) does not allow for a fine granular tuning of computing resources for different steps of the pipeline \citep{Sztuka2024}, and (c) limits its cluster scalability because PGGB can only use the resources of one node. These limitations greatly hinder the broad application of large-scale pangenomes.
+	%SN: Given the high resource requirements of large-scale pangenomes, %these limitations are significantly limiting broad applications.
 	
 	To compensate for that, we wrote \textit{nf-core/pangenome}, a reference-unbiased approach to construct pangenome graphs. 
 	Mirroring PGGB, nf-core/pangenome is implemented in Nextflow \citep{DiTommaso2017}.
