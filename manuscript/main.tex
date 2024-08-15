@@ -78,7 +78,7 @@
 
     \subtitle{Genome Analysis}
 
-    \title[Cluster efficient pangenome graph construction with nf-core/pangenome]{Cluster efficient pangenome graph construction with nf-core/pangenome}
+    \title[\red{Cluster-efficient} pangenome graph construction with nf-core/pangenome]{\red{Cluster-efficient} pangenome graph construction with nf-core/pangenome}
     %\title[Genome-guided pangenome graph layouts via Stochastic Gradient Descent]{Genome-guided pangenome graph layouts via Stochastic Gradient Descent}
 	%\title[Sequence-guided pangenome graph layouts via Stochastic Gradient Descent]{Sequence-guided pangenome graph layouts via Stochastic Gradient Descent}
     %\title[Genome-guided pangenome graph layouts]{Genome-guided pangenome graph layouts}
@@ -170,7 +170,7 @@
 	One recent approach that overcomes such limitations is the PanGenome Graph Builder (PGGB) pipeline \citep{Garrison2023}. 
 	PGGB iteratively refines an all-to-all whole-genome alignment graph that lets us explore sequence conservation and variation, infer phylogeny, and identify recombination events. 
 	PGGB was already extensively evaluated \citep{Garrison2023, Andreace2023} and applied to build the first draft human pangenome reference \citep{Liao2023}.
-	However, PGGB is implemented in bash: This (a) makes it difficult to deploy on HPC systems, (b) does not allow for a fine granular tuning of computing resources for different steps of the pipeline \citep{Sztuka2024}, and (c) limits its cluster scalability because PGGB can only use the resources of one node. These limitations greatly hinder the broad application of large-scale pangenomes.
+	However, PGGB is implemented in bash\red{, which (a)} makes it difficult to deploy on HPC systems, (b) does not allow for a fine granular tuning of computing resources for different steps of the pipeline \citep{Sztuka2024}, and (c) limits its cluster scalability because PGGB can only use the resources of one node. These limitations greatly hinder the broad application of large-scale pangenomes.
 	%SN: Given the high resource requirements of large-scale pangenomes, %these limitations are significantly limiting broad applications.
 	
 	To compensate for that, we wrote \textit{nf-core/pangenome}, a reference-unbiased approach to construct pangenome graphs. 
@@ -273,7 +273,7 @@
 	%Such savings become increasingly important when one has to iterate the graph construction several times in order to ensure that the built graph best models the biology of the input sequences. 
 	%For example, the PGGB HPRC graph construction was iterated 88 times \citep{Liao2023}.
 	
-	Competing pipelines don’t use any workflow management system to connect their processes \citep{Chin2023}, or their workflow language of choice is e.g. Toil \citep{Vivian2017, Hickey2023} which makes them less user-friendly, less cluster efficient, and less portable \citep{Wratten2021}.
+	Competing pipelines don’t use any workflow management system to connect their processes \citep{Chin2023}, or their workflow language of choice is e.g. Toil \citep{Vivian2017, Hickey2023} which makes them less user-friendly, less \red{cluster-efficient}, and less portable \citep{Wratten2021}.
 	nf-core/pangenome is currently the only pangenomics pipeline that is optionally monitoring its CO2 footprint. 
 	The measurements have shown that constructing extensive pangenome graphs, such as the 2146 \textit{E. coli} graph, requires a considerable amount of energy. 
 	Therefore, before executing environmentally questionable experiments, we would recommend thoroughly assessing both the rationale and the methodology. 
@@ -281,8 +281,8 @@
 	%Adjusting SMOOTHXG with architecture-specific compilation would result in a speedup of approximately 10 times for this specific POA phase. 
 	%Progress towards implementing such an enhancement is currently underway. %(\href{https://github.com/pangenome/smoothxg/issues/208}{https://github.com/pangenome/smoothxg/issues/208}).
 	
-	Although, we expect our pipeline to scale well for future pangenome graph construction challenges, such as for the next HPRC phase which targets 300 individuals, there still is potential for further optimization: 
-	IMplicit Pangenome Graph (IMPG) (\href{https://github.com/ekg/impg}{https://github.com/ekg/impg}), a tool that extracts homologous loci from all genomes mapped to a specific target region. 
+	Although, we expect our pipeline to scale well for future pangenome graph construction challenges, such as for the next HPRC phase which targets \red{350} individuals, there still is potential for further optimization: 
+	IMplicit Pangenome Graph (IMPG) (\href{https://github.com/ekg/impg}{https://github.com/ekg/impg}) \red{which is} a tool that extracts homologous loci from all genomes mapped to a specific target region. 
 	This would allow us to break the whole genome multiple alignments into smaller pieces, construct a pangenome graph for each piece, and lace these together into a full graph with \href{https://github.com/pangenome/gfalace}{https://github.com/pangenome/gfalace}. 
 	%Our first trials 
 	%(\href{https://hackmd.io/vh0Ap65uQTm40DdleA-Oow}{https://hackmd.io/vh0Ap65uQTm40DdleA-Oow}) 
