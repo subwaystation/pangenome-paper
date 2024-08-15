@@ -178,7 +178,7 @@
 	% and follows the community-curated nf-core \citep{Ewels2020} best practice development guidelines. 
 	%Providing all software dependencies in biocontainers \citep{daVeigaLeprevost2017} makes the pipeline portable and easy to install on HPC environments. 
 	In contrast to PGGB, nf-core/pangenome can distribute the quadratic all-to-all base-level alignments across nodes of a cluster by splitting the approximate alignments into problems of equal size. 
-	We benchmarked the time spent on base-pair level alignments and show that it is reduced linearly with an increase in alignment problem chunks. 
+	We benchmarked the time spent on base-pair level alignments and show that it is reduced linearly with an increase in alignment problem chunks \red{(Suppl. ~\ref{aln_jobs_dist})}. 
 	We showcase the workflow’s scalability by applying it to 1000 chromosome 19 human haplotypes, and to 2146 \textit{E. coli} sequences, which were built in less than half the time PGGB required while not increasing the CO2 equivalent (CO2e) emissions.
 	\vspace{-0.6cm}
 	\section{Material and Methods}
@@ -227,13 +227,13 @@
 	\vspace{-0.6cm}
 	\section{Results}
 	
-	\subsection{Alignment jobs distribution evaluation}
+	%\subsection{Alignment jobs distribution evaluation}
 	
-	Generating all-vs-all alignments is a computationally quadratic problem. 
-	To evaluate nf-core/pangenome’s alignment jobs scalability (detailed in Suppl. ~\ref{aln_jobs_dist}), we applied it to 1024 \textit{E. coli} genomes with varying numbers of chunks. 
-	nf-core/pangenome’s alignment jobs distribution linearly reduces the time spent on base-pair level alignments with increased chunks.
-	The CO2 consumption is not influenced by the number of chunks (Suppl. Fig.~\ref{fig:emissions}).
-	\vspace{-0.0cm}	
+	%Generating all-vs-all alignments is a computationally quadratic problem. 
+	%To evaluate nf-core/pangenome’s alignment jobs scalability (detailed in Suppl. ~\ref{aln_jobs_dist}), we applied it to 1024 \textit{E. coli} genomes with varying numbers of chunks. 
+	%nf-core/pangenome’s alignment jobs distribution linearly reduces the time spent on base-pair level alignments with increased chunks.
+	%The CO2 consumption is not influenced by the number of chunks (Suppl. Fig.~\ref{fig:emissions}).
+	%\vspace{-0.0cm}	
 	\subsection{Building a 1000 haplotypes chr19 pangenome graph}
 	
 	The Human Pangenome Resource Consortium (HPRC) recently built a draft human pangenome reference of 90 haplotypes \citep{Liao2023}. 
