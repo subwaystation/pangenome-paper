@@ -192,12 +192,11 @@
 
 	\subsubsection{Core workflow}
 	
-	The core workflow of nf-core/pangenome is an exact mirror of PGGB (Fig. \ref{fig:workflow}).
-	The pipeline comes with additional enhancements: (a) All concurrent processes can be run in parallel. (b) Each process can be given individual computing resources.
+	The core workflow of nf-core/pangenome \red{mirrors}\red{ PGGB (Fig. \ref{fig:workflow}) with additional enhancements:} (a) All concurrent processes can be run in parallel. (b) Each process can be given individual computing resources.
 	%This results in efficient resource management, especially compared to PGGB, which uses the same resources for all steps of the pipeline. 
 	
-	\red{The pipeline begins with an all-to-all alignment of the input sequences using the whole-chromosome pairwise sequence aligner WFMASH \citep{wfmash}. }
-	This avoids reference, order, or orientation bias, and allows each sequence in the pangenome to serve as a reference when exploring related variation. 
+	\red{The pipeline begins with an all-to-all alignment of the input sequences using the whole-chromosome pairwise sequence aligner WFMASH \citep{wfmash}, avoiding reference, order, or orientation bias, allowing every sequence to serve as a reference.}
+	%This avoids reference, order, or orientation bias, and allows each sequence in the pangenome to serve as a reference when exploring related variation. 
 	In the pangenome graph induction step SEQWISH \citep{Garrison2022}, an alignment to variation graph inducer, converts the sequence alignments into a variation graph. 
 	%SEQWISH can recapture homology relationships that may not be encoded in the initial alignments. 
 	%This allows us to randomly sparsify the mappings computed by WFMASH. 
@@ -312,7 +311,8 @@
 	
 	\section*{Funding}
 	
-	 S.H. acknowledges funding from the Central Innovation Programme (ZIM) for SMEs of the Federal Ministry for Economic Affairs and Energy of Germany. This work was supported by the BMBF-funded de.NBI Cloud within the German Network for Bioinformatics Infrastructure (de.NBI) (031A532B, 031A533A, 031A533B, 031A534A, 031A535A, 031A537A, 031A537B, 031A537C, 031A537D, 031A538A). A.G. acknowledges support from the Human Technopole. S.N. acknowledges support from iFIT funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany’s Excellence Strategy—EXC 2180—390900677 and CMFI under EXC 2124–390838134.
+	 S.H. acknowledges funding from the Central Innovation Programme (ZIM) for SMEs of the Federal Ministry for Economic Affairs and Energy of Germany. This work was supported by the BMBF-funded de.NBI Cloud within the German Network for Bioinformatics Infrastructure (de.NBI) (031A532B, 031A533A, 031A533B, 031A534A, 031A535A, 031A537A, 031A537B, 031A537C, 031A537D, 031A538A). A.G. acknowledges support from the Human Technopole. S.N. acknowledges support from iFIT funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany’s Excellence Strategy—EXC 2180—390900677 and CMFI under EXC 2124–390838134. 
+     \red{We gratefully acknowledge support from NIH/NIDA U01DA047638 (E.G.), NIH/NIGMS R01GM123489 (E.G., P.P.), and NSF PPoSS Award \#2118709 (E.G., P.P.), and the CITG (E.G.).}
 	 
 	\vspace{-0.6cm}
 	
