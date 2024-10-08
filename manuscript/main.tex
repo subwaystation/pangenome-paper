@@ -157,7 +157,7 @@
 	\maketitle
 	\vspace{-0.5cm}
 	\section{Introduction}
-	The availability of high-quality collections of population-wide whole-genome assemblies \citep{Liao2023, Kang2023, Weller2023, Zhou2022, Liu2020, Leonard2022} offers new opportunities to study sequence evolution and variation within and between genomic populations. 
+	\red{The availability of high-quality population-wide whole-genome assemblies} \citep{Liao2023, Kang2023, Weller2023, Zhou2022, Liu2020, Leonard2022} offers new opportunities to study sequence evolution and variation within and between genomic populations. 
 	A challenge is simultaneously representing and analyzing hundreds to thousands of genomes at a gigabase scale. 
 	One solution here is a pangenome. It models a population's entire set of genomic sequences \citep{Ballouz2019}. 
 	In contrast to reference-based genomic approaches, which relate sequences to a linear genome, pangenomics relates each new sequence to all the others represented in the pangenome \citep{CompPan2016, Eizenga_2020, Sherman_2020} minimizing reference-bias. 
@@ -169,8 +169,8 @@
 	%Although whole genome scaling approaches for unbiased pangenome graph construction \citep{Chin2023, Minkin2016} exist, their reliance on k-mer-based data structures often leads to unwanted complexity for downstream analysis. 
 	One recent approach that overcomes such limitations is the PanGenome Graph Builder (PGGB) pipeline \citep{Garrison2023}. 
 	PGGB iteratively refines an all-to-all whole-genome alignment graph that lets us explore sequence conservation and variation, infer phylogeny, and identify recombination events. 
-	PGGB was already extensively evaluated \citep{Garrison2023, Andreace2023} and applied to build the first draft human pangenome reference \citep{Liao2023}.
-	However, PGGB is implemented in bash, which (a) makes it difficult to deploy on HPC systems, (b) does not allow for a fine granular tuning of computing resources for different steps of the pipeline \citep{Sztuka2024}, and (c) limits its cluster scalability because PGGB can only use the resources of one node. These limitations greatly hinder the broad application of large-scale pangenomes.
+	PGGB has been extensively evaluated \citep{Garrison2023, Andreace2023} and applied to build the first draft human pangenome reference \citep{Liao2023}.
+	However, PGGB is implemented in bash, which (a) makes it difficult to deploy on HPC systems, (b) does not allow for a fine granular tuning of computing resources for different steps of the pipeline \citep{Sztuka2024}, and (c) \red{limits its cluster scalability to one node.} These limitations greatly hinder the broad application of large-scale pangenomes.
 	%SN: Given the high resource requirements of large-scale pangenomes, %these limitations are significantly limiting broad applications.
 	
 	To compensate for that, we wrote \textit{nf-core/pangenome}, a reference-unbiased approach to construct pangenome graphs. 
@@ -243,7 +243,7 @@ If desired, the pipeline performs community detection to identify clusters of re
 	As a use case, we used nf-core/pangenome to build a graph of 1000 chromosome 19 haplotypes \citep{Kuhnle2020} in 3 days, emitting 22.52 kg CO2e.
 	PGGB took 7 days for the same task. 
 	In Fig.~\ref{fig:hist_chr19} the pangenome growth curve generated with PANACUS \citep{Liao2023} shows nucleotide growth as more haplotypes are added.}
-	\red{The softcore pangenome, defined as sequences traversed by 95\% of haplotypes, represents the majority of the pangenome even with 1000 haplotypes. 
+	\red{The softcore pangenome, defined as sequences traversed by 95\% of haplotypes, comprises the majority of the pangenome even with 1000 haplotypes. 
 	This stability may be due to the exclusion of complex regions like the centromere in the short-read data.
 	}
 
@@ -253,40 +253,40 @@ If desired, the pipeline performs community detection to identify clusters of re
 	To evaluate the pipeline’s scalability, we built a pangenome graph of 2146 \textit{E. coli} sequences. 
 \red{	The nf-core/pangenome graph was completed in 10 days, emitting 175.18 kg CO2e, while PGGB could not finish within 30 days due to cluster time restrictions.}
 \red{	For the growth curve (Fig.~\ref{fig:hist_ecoli}) we excluded 130 plasmid sequences. 
-	The softcore pangenome remains stable at ~3Mb, but its size constitutes less than 10\% of the built pangenome.}
-	This substantial pangenomic growth is likely driven by horizontal gene transfer, as bacteria incorporate genes from one another at various genomic locations.
-	Other reasons could be sequencing errors or human contamination \citep{Breitwieser2019}.
+	The softcore pangenome remains stable at $\sim$3Mb, but its size constitutes less than 10\% of the total pangenome.}
+\red{	This substantial pangenomic growth is likely driven by horizontal gene transfer, as bacteria incorporate genes from one another at various genomic locations.
+	Other reasons could be sequencing errors or human contamination \citep{Breitwieser2019}.}
 
 	\vspace{-0.5cm}
 	\section{Discussion}
 	
-	We implemented nf-core/pangenome, an easy-to-install, portable, and cluster-scalable pipeline for the unbiased construction of pangenome variation graphs.  
+	\red{We implemented nf-core/pangenome, an easy-to-install, portable, and cluster-scalable pipeline for unbiased pangenome variation graph construction.}
     It is the first pangenomic pipeline within the nf-core framework that enables the comparative analysis of gigabase-scale pangenome datasets. 
-    While other tools such as Minigraph \citep{Li_2020} or PGR-TK \citep{Chin2023} also address pangenome analysis, nf-core/pangenome uniquely integrates this capability into the standardized nf-core framework, offering compatibility with a wide range of modular workflows and community-developed best practices.
+    \red{While tools} like Minigraph \citep{Li_2020} or PGR-TK \citep{Chin2023} also address pangenome analysis, nf-core/pangenome uniquely integrates this capability into the standardized nf-core framework, offering compatibility with a wide range of modular workflows and community-developed best practices.
     
-	The pipeline’s core workflow steps were already successfully applied to \textit{Neisseria meningitidis} \citep{Yang2023}, wild grapes \citep{Cochetel2023}, humans \citep{Guarracino2023, Liao2023}, grapevines \citep{Guo2024}, taurines \citep{Milia2024}, and rats \citep{Villani2024} underpinning the community effort to focus on a best-practice workflow to create reference-unbiased and sequence complete pangenome graphs. 
-	The modular domain-specific language (DSL) 2 pipeline structure eases the exchange of key processes with alternative tools, the extent of the pipeline with new tools, and the integration of parts of the pipeline with other (sub-)workflows.
+	The pipeline’s core workflow \red{has been} successfully applied to \textit{Neisseria meningitidis} \citep{Yang2023}, wild grapes \citep{Cochetel2023}, humans \citep{Guarracino2023, Liao2023}, grapevines \citep{Guo2024}, taurines \citep{Milia2024}, and rats \citep{Villani2024} underpinning the community effort to focus on a best-practice workflow to create reference-unbiased and sequence complete pangenome graphs. 
+	\red{The modular domain-specific language (DSL) 2 pipeline structure facilitates easy exchange of processes with alternative tools, expanding its functionality and integration with other (sub-)workflows.}
 	
 	We have shown that we are able to perform all-vs-all base pair level alignments of thousands of sequences. 
 	When executed on an HPC, nf-core/pangenome’s parallel workflow accelerates graph construction compared to PGGB. 
 	PGGB’s inability to assign individual computational resources to each pipeline step leads to the allocation of one whole node of an HPC, despite the fact that some processes can only make use of one thread. 
-	This blocks valuable CPU cycles for other users working on the same HPC and ultimately can lead to additional costs.
+	This blocks valuable CPU cycles.
+	% for other users working on the same HPC and ultimately can lead to additional costs.
 	%, or, as was shown for \textit{E. coli}, to an inability to finish the graph construction in one go. 
-	In contrast, %, utilizing the power of workflow management systems, 
-	nf-core/pangenome does not have such limitations: 
-	Nextflow’s process management enables the optimal workload of given compute resources which can be especially important when running a pipeline in commercial clouds. %commercial cloud like AWS. 
+	\red{In contrast, nf-core/pangenome leverages Nextflow’s process management for optimal resource allocation, crucial for cloud-based executions.} %commercial cloud like AWS. 
 	%Such savings become increasingly important when one has to iterate the graph construction several times in order to ensure that the built graph best models the biology of the input sequences. 
 	%For example, the PGGB HPRC graph construction was iterated 88 times \citep{Liao2023}.
 	
-	Competing pipelines don’t use any workflow management system to connect their processes \citep{Chin2023}, or their workflow language of choice is e.g. Toil \citep{Vivian2017, Hickey2023} which makes them less user-friendly, less cluster-efficient, and less portable \citep{Wratten2021}.
+	Competing pipelines either lack workflow management system \citep{Chin2023}, or their workflow language of choice is e.g. Toil \citep{Vivian2017, Hickey2023} which makes them less user-friendly, less cluster-efficient, and less portable \citep{Wratten2021}.
 	nf-core/pangenome is currently the only pangenomics pipeline that is optionally monitoring its CO2 footprint. 
 	The measurements have shown that constructing extensive pangenome graphs, such as the 2146 \textit{E. coli} graph, requires a considerable amount of energy. 
-	Therefore, before executing environmentally questionable experiments, we would recommend thoroughly assessing both the rationale and the methodology. 
+	\red{Therefore, we recommend assessing the rationale and methodology before conducting energy-intensive experiments.}
 	%One computationally expensive part is the POA phase of SMOOTHXG. 
 	%Adjusting SMOOTHXG with architecture-specific compilation would result in a speedup of approximately 10 times for this specific POA phase. 
 	%Progress towards implementing such an enhancement is currently underway. %(\href{https://github.com/pangenome/smoothxg/issues/208}{https://github.com/pangenome/smoothxg/issues/208}).
 	
-	\red{Although} we expect our pipeline to scale well for future pangenome graph construction challenges, such as for the next HPRC phase which targets 350 individuals, there still is potential for further optimization: 
+
+	\red{Although} we expect our pipeline to scale for future challenges, such as for the next HPRC phase which targets 350 individuals\red{, further optimizations are possible}: 
 	IMplicit Pangenome Graph (IMPG) (\href{https://github.com/ekg/impg}{https://github.com/ekg/impg}) which is a tool that extracts homologous loci from all genomes mapped to a specific target region. 
 	This would allow us to break the whole genome multiple alignments into smaller pieces, construct a pangenome graph for each piece, and lace these together into a full graph with \href{https://github.com/pangenome/gfalace}{https://github.com/pangenome/gfalace}. 
 	%Our first trials 
@@ -298,7 +298,7 @@ If desired, the pipeline performs community detection to identify clusters of re
 	\vspace{-0.6cm}
 	\section*{Software and data availability}
 	
-	Code and links to data resources used to build this manuscript and its figures, can be found in the paper’s public repository: \href{https://github.com/subwaystation/pangenome-paper}{https://github.com/subwaystation/pangenome-paper}.
+	Code and data resources for this manuscript and its figures are available in the public repository: \href{https://github.com/subwaystation/pangenome-paper}{https://github.com/subwaystation/pangenome-paper}.
 	\vspace{-0.6cm}
 	\section*{Acknowledgments}
 
