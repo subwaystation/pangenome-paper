@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2024/Arch Linux)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: natbib.bst
+Database file #1: document.bib
+Warning--I'm ignoring Li2009's extra "note" field
+--line 957 of file document.bib
+Warning--I'm ignoring Li2009's extra "note" field
+--line 958 of file document.bib
+You've used 41 entries,
+            2401 wiz_defined-function locations,
+            802 strings with 22941 characters,
+and the built_in function-call counts, 27820 in all, are:
+= -- 1983
+> -- 2794
+< -- 5
++ -- 914
+- -- 865
+* -- 3149
+:= -- 5173
+add.period$ -- 239
+call.type$ -- 41
+change.case$ -- 248
+chr.to.int$ -- 41
+cite$ -- 41
+duplicate$ -- 884
+empty$ -- 1327
+format.name$ -- 910
+if$ -- 5184
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 41
+newline$ -- 209
+num.names$ -- 164
+pop$ -- 263
+preamble$ -- 1
+purify$ -- 248
+quote$ -- 0
+skip$ -- 562
+stack$ -- 0
+substring$ -- 1280
+swap$ -- 203
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 369
+warning$ -- 0
+while$ -- 149
+width$ -- 0
+write$ -- 531
+(There were 2 warnings)

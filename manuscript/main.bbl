@@ -1,0 +1,314 @@
+\begin{thebibliography}{}
+
+\bibitem[Andreace {\em et~al.}(2023)Andreace, Lechat, Dufresne, and
+  Chikhi]{Andreace2023}
+Andreace, F.  {\em et~al.} (2023).
+\newblock Comparing methods for constructing and representing human pangenome
+  graphs.
+\newblock {\em Genome Biology\/}, {\bf 24}(1).
+
+\bibitem[Ballouz {\em et~al.}(2019)Ballouz, Dobin, and Gillis]{Ballouz2019}
+Ballouz, S.  {\em et~al.} (2019).
+\newblock Is it time to change the reference genome?
+\newblock {\em Genome Biology\/}, {\bf 20}(1), 159.
+
+\bibitem[Breitwieser {\em et~al.}(2019)Breitwieser, Pertea, Zimin, and
+  Salzberg]{Breitwieser2019}
+Breitwieser, F.~P.  {\em et~al.} (2019).
+\newblock Human contamination in bacterial genomes has created thousands of
+  spurious proteins.
+\newblock {\em Genome Research\/}, {\bf 29}(6), 954–960.
+
+\bibitem[Chin {\em et~al.}(2023)Chin, Behera, Khalak, Sedlazeck, Sudmant,
+  Wagner, and Zook]{Chin2023}
+Chin, C.-S.  {\em et~al.} (2023).
+\newblock Multiscale analysis of pangenomes enables improved representation of
+  genomic diversity for repetitive and clinically relevant genes.
+\newblock {\em Nature Methods\/}, {\bf 20}(8), 1213–1221.
+
+\bibitem[Cochetel {\em et~al.}(2023)Cochetel, Minio, Guarracino, Garcia,
+  Figueroa-Balderas, Massonnet, Kasuga, Londo, Garrison, Gaut, and
+  Cantu]{Cochetel2023}
+Cochetel, N.  {\em et~al.} (2023).
+\newblock {A super-pangenome of the North American wild grape species}.
+\newblock {\em Genome Biology\/}, {\bf 24}(1).
+
+\bibitem[Di~Tommaso {\em et~al.}(2017)Di~Tommaso, Chatzou, Floden, Barja,
+  Palumbo, and Notredame]{DiTommaso2017}
+Di~Tommaso, P.  {\em et~al.} (2017).
+\newblock Nextflow enables reproducible computational workflows.
+\newblock {\em Nature Biotechnology\/}, {\bf 35}(4), 316–319.
+
+\bibitem[Durbin {\em et~al.}(2010)Durbin, Altshuler, Abecasis, Bentley,
+  Chakravarti, Clark, Collins, and {1000 Genomes Project
+  Consortiuim}]{Durbin2010}
+Durbin, R.~M.  {\em et~al.} (2010).
+\newblock A map of human genome variation from population-scale sequencing.
+\newblock {\em Nature\/}, {\bf 467}(7319), 1061–1073.
+
+\bibitem[Eizenga {\em et~al.}(2020)Eizenga, Novak, Sibbesen, Heumos, Ghaffaari,
+  Hickey, Chang, Seaman, Rounthwaite, Ebler, and et~al.]{Eizenga_2020}
+Eizenga, J.~M.  {\em et~al.} (2020).
+\newblock Pangenome graphs.
+\newblock {\em Annual Review of Genomics and Human Genetics\/}, {\bf 21}(1),
+  139–162.
+
+\bibitem[Ewels {\em et~al.}(2016)Ewels, Magnusson, Lundin, and
+  Käller]{Ewels_2016}
+Ewels, P.  {\em et~al.} (2016).
+\newblock {MultiQC: summarize analysis results for multiple tools and samples
+  in a single report}.
+\newblock {\em Bioinformatics\/}, {\bf 32}(19), 3047--3048.
+
+\bibitem[Garrison and Guarracino(2022)Garrison and Guarracino]{Garrison2022}
+Garrison, E. and Guarracino, A. (2022).
+\newblock Unbiased pangenome graphs.
+\newblock {\em Bioinformatics\/}, {\bf 39}(1).
+
+\bibitem[Garrison {\em et~al.}(2018)Garrison, Siren, Novak, Hickey, Eizenga,
+  Dawson, Jones, Garg, Markello, Lin, Paten, and Durbin]{Garrison:2018}
+Garrison, E.  {\em et~al.} (2018).
+\newblock {Variation Graph Toolkit Improves Read Mapping by Representing
+  Genetic Variation in the Reference}.
+\newblock {\em Nature Biotechnology\/}, {\bf 36}(9), 875--879.
+
+\bibitem[Garrison {\em et~al.}(2023)Garrison, Guarracino, Heumos, Villani, Bao,
+  Tattini, Hagmann, Vorbrugg, Marco-Sola, Kubica, Ashbrook, Thorell,
+  Rusholme-Pilcher, Liti, Rudbeck, Nahnsen, Yang, Moses, Nobrega, Wu, Chen,
+  de~Ligt, Sudmant, Soranzo, Colonna, Williams, and Prins]{Garrison2023}
+Garrison, E.  {\em et~al.} (2023).
+\newblock Building pangenome graphs.
+\newblock {\em bioRxiv\/}.
+
+\bibitem[Guarracino {\em et~al.}(2022)Guarracino, Heumos, Nahnsen, Prins, and
+  Garrison]{Guarracino2022}
+Guarracino, A.  {\em et~al.} (2022).
+\newblock {ODGI: understanding pangenome graphs}.
+\newblock {\em Bioinformatics\/}, {\bf 38}(13), 3319--3326.
+
+\bibitem[Guarracino {\em et~al.}(2023)Guarracino, Buonaiuto, de~Lima, Potapova,
+  Rhie, Koren, Rubinstein, Fischer, Abel, Antonacci-Fulton, Asri, Baid, Baker,
+  Belyaeva, Billis, Bourque, Carroll, Chaisson, Chang, Chang, Cheng, Chu, Cody,
+  Cook, Cook-Deegan, Cornejo, Diekhans, Doerr, Ebert, Ebler, Eichler, Eizenga,
+  Fairley, Fedrigo, Felsenfeld, Feng, Flicek, Formenti, Frankish, Fulton, Gao,
+  Garg, Garrison, Giron, Green, Groza, Haggerty, Hall, Harvey, Haukness,
+  Haussler, Heumos, Hickey, Hoekzema, Hourlier, Howe, Jain, Jarvis, Ji, Kenny,
+  Koenig, Kolesnikov, Korbel, Kordosky, Lee, Lewis, Li, Liao, Lu, Lu, Lucas,
+  Magalh{\~a}es, Marco-Sola, Marijon, Markello, Marschall, Martin, McCartney,
+  McDaniel, Miga, Mitchell, Monlong, Mountcastle, Munson, Mwaniki, Nattestad,
+  Novak, Nurk, Olsen, Olson, Paten, Pesout, Popejoy, Porubsky, Prins, Puiu,
+  Rautiainen, Regier, Sacco, Sanders, Schneider, Schultz, Shafin, Sibbesen,
+  Sir{\'e}n, Smith, Sofia, Tayoun, Thibaud-Nissen, Tomlinson, Tricomi, Villani,
+  Vollger, Wagner, Walenz, Wang, Wood, Zimin, Zook, Gerton, Phillippy, Colonna,
+  Garrison, and Consortium]{Guarracino2023}
+Guarracino, A.  {\em et~al.} (2023).
+\newblock Recombination between heterologous human acrocentric chromosomes.
+\newblock {\em Nature\/}, {\bf 617}(7960), 335--343.
+
+\bibitem[Guo {\em et~al.}(2024)Guo, Wang, Ayhan, Rhaman, Yan, Jiang, Wang,
+  Zheng, Mei, Ji, Jiao, Chen, Sun, Yi, Meng, Wang, Bhuiyan, Qin, Guo, Yang,
+  Zhang, Sun, Liu, and Ye]{Guo2024}
+Guo, L.  {\em et~al.} (2024).
+\newblock {Super Pangenome of Grapevines Empowers Improvement of the Oldest
+  Domesticated Fruit}.
+\newblock {\em bioRxiv\/}.
+
+\bibitem[Hein(1989)Hein]{Hein1989}
+Hein, J. (1989).
+\newblock A new method that simultaneously aligns and reconstructs ancestral
+  sequences for any number of homologous sequences, when the phylogeny is
+  given.
+\newblock {\em Molecular Biology and Evolution\/}.
+
+\bibitem[Heumos {\em et~al.}(2024)Heumos, Guarracino, Schmelzle, Li, Zhang,
+  Hagmann, Nahnsen, Prins, and Garrison]{Heumos2024}
+Heumos, S.  {\em et~al.} (2024).
+\newblock Pangenome graph layout by path-guided stochastic gradient descent.
+\newblock {\em Bioinformatics\/}, {\bf 40}(7).
+
+\bibitem[Hickey {\em et~al.}(2023)Hickey, Monlong, Ebler, Novak, Eizenga, Gao,
+  Abel, Antonacci-Fulton, Asri, Baid, Baker, Belyaeva, Billis, Bourque,
+  Buonaiuto, Carroll, Chaisson, Chang, Chang, Cheng, Chu, Cody, Colonna, Cook,
+  Cook-Deegan, Cornejo, Diekhans, Doerr, Ebert, Ebler, Eichler, Fairley,
+  Fedrigo, Felsenfeld, Feng, Fischer, Flicek, Formenti, Frankish, Fulton, Garg,
+  Garrison, Garrison, Giron, Green, Groza, Guarracino, Haggerty, Hall, Harvey,
+  Haukness, Haussler, Heumos, Hoekzema, Hourlier, Howe, Jain, Jarvis, Ji,
+  Kenny, Koenig, Kolesnikov, Korbel, Kordosky, Koren, Lee, Lewis, Liao, Lu, Lu,
+  Lucas, Magalhães, Marco-Sola, Marijon, Markello, Marschall, Martin,
+  McCartney, McDaniel, Miga, Mitchell, Mountcastle, Munson, Mwaniki, Nattestad,
+  Nurk, Olsen, Olson, Pesout, Phillippy, Popejoy, Porubsky, Prins, Puiu,
+  Rautiainen, Regier, Rhie, Sacco, Sanders, Schneider, Schultz, Shafin,
+  Sibbesen, Sirén, Smith, Sofia, Tayoun, Thibaud-Nissen, Tomlinson, Tricomi,
+  Villani, Vollger, Wagner, Walenz, Wang, Wood, Zimin, Zook, Marschall, Li, and
+  Paten]{Hickey2023}
+Hickey, G.  {\em et~al.} (2023).
+\newblock Pangenome graph construction from genome alignments with
+  minigraph-cactus.
+\newblock {\em Nature Biotechnology\/}, {\bf 42}(4), 663–673.
+
+\bibitem[Kang {\em et~al.}(2023)Kang, Wu, Liu, Liu, Zhu, Han, Liu, Chen, Song,
+  Tan, Yin, Zhao, Yan, Lou, Zan, and Liu]{Kang2023}
+Kang, M.  {\em et~al.} (2023).
+\newblock The pan-genome and local adaptation of arabidopsis thaliana.
+\newblock {\em Nature Communications\/}, {\bf 14}(1).
+
+\bibitem[Kuhnle {\em et~al.}(2020)Kuhnle, Mun, Boucher, Gagie, Langmead, and
+  Manzini]{Kuhnle2020}
+Kuhnle, A.  {\em et~al.} (2020).
+\newblock Efficient construction of a complete index for pan-genomics read
+  alignment.
+\newblock {\em Journal of Computational Biology\/}, {\bf 27}(4), 500–513.
+
+\bibitem[Lannelongue {\em et~al.}(2021)Lannelongue, Grealey, and
+  Inouye]{Lannelongue2021}
+Lannelongue, L.  {\em et~al.} (2021).
+\newblock Green algorithms: Quantifying the carbon footprint of computation.
+\newblock {\em Advanced Science\/}, {\bf 8}(12).
+
+\bibitem[Lee {\em et~al.}(2002)Lee, Grasso, and Sharlow]{Lee2002}
+Lee, C.  {\em et~al.} (2002).
+\newblock Multiple sequence alignment using partial order graphs.
+\newblock {\em Bioinformatics\/}, {\bf 18}(3), 452–464.
+
+\bibitem[Leonard {\em et~al.}(2022)Leonard, Crysnanto, Fang, Heaton,
+  Vander~Ley, Herrera, Bollwein, Bickhart, Kuhn, Smith, Rosen, and
+  Pausch]{Leonard2022}
+Leonard, A.~S.  {\em et~al.} (2022).
+\newblock Structural variant-based pangenome construction has low sensitivity
+  to variability of haplotype-resolved bovine assemblies.
+\newblock {\em Nature Communications\/}, {\bf 13}(1).
+
+\bibitem[Li {\em et~al.}(2009)Li, Handsaker, Wysoker, Fennell, Ruan, Homer,
+  Marth, Abecasis, Durbin, and Subgroup]{Li2009}
+Li, H.  {\em et~al.} (2009).
+\newblock The sequence alignment/map format and samtools.
+\newblock {\em Bioinformatics\/}, {\bf 25}(16), 2078--2079.
+\newblock 19505943[pmid].
+
+\bibitem[Li {\em et~al.}(2020)Li, Feng, and Chu]{Li_2020}
+Li, H.  {\em et~al.} (2020).
+\newblock {The Design and Construction of Reference Pangenome Graphs with
+  Minigraph}.
+\newblock {\em Genome Biology\/}, {\bf 21}(1), 265.
+
+\bibitem[Liao {\em et~al.}(2023)Liao, Asri, Ebler, Doerr, Haukness, Hickey, Lu,
+  Lucas, Monlong, Abel, Buonaiuto, Chang, Cheng, Chu, Colonna, Eizenga, Feng,
+  Fischer, Fulton, Garg, Groza, Guarracino, Harvey, Heumos, Howe, Jain, Lu,
+  Markello, Martin, Mitchell, Munson, Mwaniki, Novak, Olsen, Pesout, Porubsky,
+  Prins, Sibbesen, Sir{\'e}n, Tomlinson, Villani, Vollger, Antonacci-Fulton,
+  Baid, Baker, Belyaeva, Billis, Carroll, Chang, Cody, Cook, Cook-Deegan,
+  Cornejo, Diekhans, Ebert, Fairley, Fedrigo, Felsenfeld, Formenti, Frankish,
+  Gao, Garrison, Giron, Green, Haggerty, Hoekzema, Hourlier, Ji, Kenny, Koenig,
+  Kolesnikov, Korbel, Kordosky, Koren, Lee, Lewis, Magalh{\~a}es, Marco-Sola,
+  Marijon, McCartney, McDaniel, Mountcastle, Nattestad, Nurk, Olson, Popejoy,
+  Puiu, Rautiainen, Regier, Rhie, Sacco, Sanders, Schneider, Schultz, Shafin,
+  Smith, Sofia, Abou~Tayoun, Thibaud-Nissen, Tricomi, Wagner, Walenz, Wood,
+  Zimin, Bourque, Chaisson, Flicek, Phillippy, Zook, Eichler, Haussler, Wang,
+  Jarvis, Miga, Garrison, Marschall, Hall, Li, and Paten]{Liao2023}
+Liao, W.-W.  {\em et~al.} (2023).
+\newblock A draft human pangenome reference.
+\newblock {\em Nature\/}, {\bf 617}(7960), 312--324.
+
+\bibitem[Liu {\em et~al.}(2020)Liu, Du, Li, Shen, Peng, Liu, Zhou, Zhang, Liu,
+  Shi, Huang, Li, Zhang, Wang, Zhu, Han, Liang, and Tian]{Liu2020}
+Liu, Y.  {\em et~al.} (2020).
+\newblock Pan-genome of wild and cultivated soybeans.
+\newblock {\em Cell\/}, {\bf 182}(1), 162--176.e13.
+
+\bibitem[Milia {\em et~al.}(2024)Milia, Leonard, Mapel, Bernal~Ulloa,
+  Dr\"{o}gem\"{u}ller, and Pausch]{Milia2024}
+Milia, S.  {\em et~al.} (2024).
+\newblock {Taurine pangenome uncovers a segmental duplication upstream of
+  \textit{KIT} associated with depigmentation in white-headed cattle}.
+\newblock {\em bioRxiv\/}.
+
+\bibitem[Minkin {\em et~al.}(2016)Minkin, Pham, and Medvedev]{Minkin2016}
+Minkin, I.  {\em et~al.} (2016).
+\newblock {TwoPaCo: an efficient algorithm to build the compacted de Bruijn
+  graph from many complete genomes}.
+\newblock {\em Bioinformatics\/}, {\bf 33}(24), 4024–4032.
+
+\bibitem[Sayers {\em et~al.}(2021)Sayers, Bolton, Brister, Canese, Chan,
+  Comeau, Connor, Funk, Kelly, Kim, Madej, Marchler-Bauer, Lanczycki, Lathrop,
+  Lu, Thibaud-Nissen, Murphy, Phan, Skripchenko, Tse, Wang, Williams, Trawick,
+  Pruitt, and Sherry]{Sayers2021}
+Sayers, E.~W.  {\em et~al.} (2021).
+\newblock Database resources of the national center for biotechnology
+  information.
+\newblock {\em Nucleic Acids Research\/}, {\bf 50}(D1), D20–D26.
+
+\bibitem[Sherman and Salzberg(2020)Sherman and Salzberg]{Sherman_2020}
+Sherman, R.~M. and Salzberg, S.~L. (2020).
+\newblock Pan-genomics in the human genome era.
+\newblock {\em Nature Reviews Genetics\/}, {\bf 21}(4), 243–254.
+
+\bibitem[Sirén {\em et~al.}(2024)Sirén, Eskandar, Ungaro, Hickey, Eizenga,
+  Novak, Chang, Chang, Kolmogorov, Carroll, Monlong, and Paten]{Sirn2024}
+Sirén, J.  {\em et~al.} (2024).
+\newblock Personalized pangenome references.
+\newblock {\em Nature Methods\/}.
+
+\bibitem[Sztuka {\em et~al.}(2024)Sztuka, Kotlarz, Mielczarek, Hajduk, Liu, and
+  Szyda]{Sztuka2024}
+Sztuka, M.  {\em et~al.} (2024).
+\newblock {Nextflow vs. plain bash: different approaches to the parallelization
+  of SNP calling from the whole genome sequence data}.
+\newblock {\em NAR Genomics and Bioinformatics\/}, {\bf 6}(2), lqae040.
+
+\bibitem[{The Computational Pan-Genomics Consortium}(2016){The Computational
+  Pan-Genomics Consortium}]{CompPan2016}
+{The Computational Pan-Genomics Consortium} (2016).
+\newblock Computational pan-genomics: status, promises and challenges.
+\newblock {\em Briefings in Bioinformatics\/}, page bbw089.
+
+\bibitem[Traag {\em et~al.}(2019)Traag, Waltman, and van Eck]{Traag2019}
+Traag, V.~A.  {\em et~al.} (2019).
+\newblock {From Louvain to Leiden: guaranteeing well-connected communities}.
+\newblock {\em Scientific Reports\/}, {\bf 9}(1).
+
+\bibitem[Villani {\em et~al.}(2024)Villani, Guarracino, Ward, Green, Emms,
+  Pravenec, Prins, Garrison, Williams, Chen, and Colonna]{Villani2024}
+Villani, F.  {\em et~al.} (2024).
+\newblock Pangenome reconstruction in rats enhances genotype-phenotype mapping
+  and novel variant discovery.
+\newblock {\em bioRxiv\/}.
+
+\bibitem[Vivian {\em et~al.}(2017)Vivian, Rao, Nothaft, Ketchum, Armstrong,
+  Novak, Pfeil, Narkizian, Deran, Musselman-Brown, Schmidt, Amstutz, Craft,
+  Goldman, Rosenbloom, Cline, O’Connor, Hanna, Birger, Kent, Patterson,
+  Joseph, Zhu, Zaranek, Getz, Haussler, and Paten]{Vivian2017}
+Vivian, J.  {\em et~al.} (2017).
+\newblock Toil enables reproducible, open source, big biomedical data analyses.
+\newblock {\em Nature Biotechnology\/}, {\bf 35}(4), 314–316.
+
+\bibitem[Weller {\em et~al.}(2023)Weller, Andreev, Chambers, Park, Bloom, and
+  Sadhu]{Weller2023}
+Weller, C.~A.  {\em et~al.} (2023).
+\newblock Highly complete long-read genomes reveal pangenomic variation
+  underlying yeast phenotypic diversity.
+\newblock {\em Genome Research\/}, {\bf 33}(5), 729–740.
+
+\bibitem[Wratten {\em et~al.}(2021)Wratten, Wilm, and G\"{o}ke]{Wratten2021}
+Wratten, L.  {\em et~al.} (2021).
+\newblock Reproducible, scalable, and shareable analysis pipelines with
+  bioinformatics workflow managers.
+\newblock {\em Nature Methods\/}, {\bf 18}(10), 1161–1168.
+
+\bibitem[Yang {\em et~al.}(2023)Yang, Guarracino, Biggs, Black, Ismail, Wold,
+  Merriman, Prins, Garrison, and de~Ligt]{Yang2023}
+Yang, Z.  {\em et~al.} (2023).
+\newblock Pangenome graphs in infectious disease: a comprehensive genetic
+  variation analysis of neisseria meningitidis leveraging oxford nanopore long
+  reads.
+\newblock {\em Frontiers in Genetics\/}, {\bf 14}.
+
+\bibitem[Zhou {\em et~al.}(2022)Zhou, Yang, Han, Han, Hu, Li, Xia, Peng,
+  Boschiero, Rosen, Bickhart, Zhang, Guo, Van~Tassell, Smith, Yang, and
+  Liu]{Zhou2022}
+Zhou, Y.  {\em et~al.} (2022).
+\newblock Assembly of a pangenome for global cattle reveals missing sequences
+  and novel structural variations, providing new insights into their diversity
+  and evolutionary history.
+\newblock {\em Genome Research\/}, {\bf 32}(8), 1585–1601.
+
+\end{thebibliography}

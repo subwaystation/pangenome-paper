@@ -134,7 +134,9 @@
 	Demonstrating its efficiency, we constructed pangenome graphs for 1000 human chromosome 19 haplotypes and 2146 \textit{E. coli} sequences, achieving a two to threefold speedup compared to PGGB without increasing greenhouse gas emissions. \\
 	\textbf{Availability:}
 	nf-core/pangenome is released under the MIT open-source license, available on \href{https://github.com/nf-core/pangenome}{GitHub} and \href{https://zenodo.org/doi/10.5281/zenodo.8202636}{Zenodo}, with documentation accessible at \href{https://nf-co.re/pangenome/1.1.2/docs/usage}{https://nf-co.re/pangenome/1.1.2/docs/usage}. \\
-	\textbf{Contact:} \href{simon.heumos@qbic.uni-tuebingen.de}{simon.heumos@qbic.uni-tuebingen.de}, \href{sven.nahnsen@qbic.uni-tuebingen.de}{sven.nahnsen@qbic.uni-tuebingen.de} \\
+	\textbf{Supplementary:} 
+	Supplementary data are available at \textit{Bioinformatics} online. \\
+	\textbf{Contact:} \href{simon.heumos@qbic.uni-tuebingen.de}{simon.heumos@qbic.uni-tuebingen.de}, \href{sven.nahnsen@qbic.uni-tuebingen.de}{sven.nahnsen@qbic.uni-tuebingen.de}
 %	Pangenome graphs can encode the entire genomic variability between multiple genomes. Current pangenome graph construction methods exclude complex sequences or are reference-based, leading to reference, order, or orientation bias. This was addressed by the PanGenome Graph Builder (PGGB) pipeline. 
 %	However, PGGB’s bash implementation limits its ease of deployment, optimal use of compute resources, and cluster scalability, making it impractical to build very large pangenome graphs.
 %	\\
@@ -288,7 +290,7 @@ If desired, the pipeline performs community detection to identify clusters of re
 
 	Although we expect our pipeline to scale for future challenges, such as for the next HPRC phase which targets 350 individuals, further optimizations are possible: 
 	The IMplicit Pangenome Graph (IMPG) (\href{https://github.com/ekg/impg}{https://github.com/ekg/impg}, last accessed October 2024) tool extracts homologous loci from genomes mapped to a specific target region.
-	This would allow us to break the whole genome multiple alignments into smaller pieces, construct a pangenome graph for each piece, and lace these together into a full graph with \href{https://github.com/pangenome/gfalace}{https://github.com/pangenome/gfalace}. 
+	This would allow us to break the whole genome multiple alignments into smaller pieces, construct a pangenome graph for each piece, and lace these together into a full graph with gfalace (\href{https://github.com/pangenome/gfalace}{https://github.com/pangenome/gfalace}, last accessed October 2024). 
 	%Our first trials 
 	%(\href{https://hackmd.io/vh0Ap65uQTm40DdleA-Oow}{https://hackmd.io/vh0Ap65uQTm40DdleA-Oow}) 
 	%suggest following this direction.
@@ -351,16 +353,17 @@ If desired, the pipeline performs community detection to identify clusters of re
 	\label{implementation}
 	
 	nf-core/pangenome is written in Nextflow using its latest domain-specific language (DSL) 2 syntax which facilitates a modular pipeline structure. 
-	Each software tool is an individual process that is implemented in its own module (\href{https://nf-co.re/docs/contributing/modules}{https://nf-co.re/docs/contributing/modules}). 
-	Processes are concatenated into subworkflows (\href{https://nf-co.re/docs/contributing/subworkflows}{https://nf-co.re/docs/contributing/\\subworkflows}). 
-	Developed with the nf-core framework, the pipeline follows a set of best-practice guidelines ensuring high-quality development, maintenance, and testing standards. Specifically, we provide community support via a dedicated Slack channel (\href{https://nfcore.slack.com/channels/pangenome}{https://nfcore.slack.com/channels/pangenome}), GitHub issues, and detailed documentation (\href{https://nf-co.re/pangenome/1.1.2/docs/usage}{https://nf-co.re/pangenome/\\1.1.2/docs/usage}).
-	Versioning and portability are enabled through (a) semantic versioning (\href{https://semver.org/}{https://semver.org/}) of the pipeline via tagged releases on GitHub, (b) packaging software dependencies in archivable containers so that the software compute environment is the same across different systems, and (c) summarizing software versions and parameters in the MultiQC report of the pipeline. 
+	Each software tool is an individual process that is implemented in its own module (\href{https://nf-co.re/docs/contributing/modules}{https://nf-co.re/docs/contributing/modules}, last accessed October 2024). 
+	Processes are concatenated into subworkflows (\href{https://nf-co.re/docs/contributing/subworkflows}{https://nf-co.re/docs/contributing/subworkflows}, last accessed October 2024). 
+	Developed with the nf-core framework, the pipeline follows a set of best-practice guidelines ensuring high-quality development, maintenance, and testing standards. Specifically, we provide community support via a dedicated Slack channel (\href{https://nfcore.slack.com/channels/pangenome}{https://nfcore.slack.com/channels/pangenome}, last accessed October 2024), GitHub issues, and detailed documentation (\href{https://nf-co.re/pangenome/1.1.2/docs/usage}{https://nf-co.re/pangenome/1.1.2/docs/usage}, last accessed October 2024).
+	
+	Versioning and portability are enabled through (a) semantic versioning (\href{https://semver.org/}{https://semver.org/}, last accessed October 2024) of the pipeline via tagged releases on GitHub, (b) packaging software dependencies in archivable containers so that the software compute environment is the same across different systems, and (c) summarizing software versions and parameters in the MultiQC report of the pipeline. 
 	nf-core/ pangenome uses biocontainers to facilitate portability across different computing resources like HPC clusters, cloud platforms, or local machines. 
 	Code changes are evaluated with GitHub Actions’ continuous integration (CI) using a pipeline-specific small test data set. 
 	For each new pipeline release, a full-size test is run on Amazon Web Services (AWS) validating the code integrity and cloud compatibility of real-world data sets.
 	Specifically, a pangenome graph is created from the 8 Saccharomyces cerevisiae strains of the Yeast Population Reference Panel (YPRP) (Yue and Liti 2018). 
-	The results of such a run are available on the nf-core webpage (\href{https://nf-co.re/pangenome/1.1.2/results/pangenome/results-0e8a38734ea3c0397f94416a0146a2972fe2db8b}{https://nf-co.re/pangenome/1.1.2/results/pangenome/results-0e8a38734ea3c0397f9\\4416a0146a2972fe2db8b}). 
-	Because we implemented our processes using DSL2 nf-core/modules (\href{https://github.com/nf-core/modules}{https://github.com/nf-core/modules}), they can be distributed easily to other users to share commonly used processes or subworkflows across pipelines. This boosts the reuse of existing work done by the community to be integrated into future pipelines.
+	The results of such a run are available on the nf-core webpage (\href{https://nf-co.re/pangenome/1.1.2/results/pangenome/results-0e8a38734ea3c0397f94416a0146a2972fe2db8b}{https://nf-co.re/pangenome/1.1.2/results/pangenome/results-0e8a38734ea3c0397f9\\4416a0146a2972fe2db8b}, last accessed October 2024). 
+	Because we implemented our processes using DSL2 nf-core/modules (\href{https://github.com/nf-core/modules}{https://github.co\\m/nf-core/modules}, last accessed October 2024), they can be distributed easily to other users to share commonly used processes or subworkflows across pipelines. This boosts the reuse of existing work done by the community to be integrated into future pipelines.
 	
 	\subsection{Chromosome community detection}
 	\label{community}
@@ -380,7 +383,7 @@ If desired, the pipeline performs community detection to identify clusters of re
 	
 	\subsection{Estimation of the carbon footprint of pipeline runs}
 	
-	We also estimated the carbon dioxide equivalent (CO2e) emissions of each nf-core/pangenome pipeline run using the nf-co2footprint Nextflow plugin (\href{https://github.com/nextflow-io/nf-co2footprint}{https://github.com/nextflow-io/nf-co2footprint}) v1.0.0-beta. 
+	We also estimated the carbon dioxide equivalent (CO2e) emissions of each nf-core/pangenome pipeline run using the nf-co2footprint Nextflow plugin (\href{https://github.com/nextflow-io/nf-co2footprint}{https://github.com/nextflow-io/nf-co2footprint}, last accessed October 2024) v1.0.0-beta. 
 	Using the Nextflow resource usage metrics and information about the power consumption of the compute system, the plugin first estimates the energy consumption for each pipeline task. 
 	It then uses the consumed energy's location-specific carbon intensity to estimate the respective CO2e emission.
 	The calculations are based on the carbon footprint computation method developed in the Green Algorithms project (\href{www.green-algorithms.org}{www.green-algorithms.org}) \citep{Lannelongue2021}.
