@@ -185,8 +185,8 @@
 	
 	\subsection{Pipeline overview}
 	The pipeline’s (Fig. \ref{fig:workflow}) input is a FASTA file compressed with \textit{bgzip} \citep{Li2009} containing the sequences to create the graph. 
-	Sequence names should follow the Pangenome Sequence Naming specification (PanSN-spec) \citep{pansn-spec}. 
-	The primary output is a pangenome variation graph \citep{Garrison:2018} in the Graphical Fragment Assembly (GFA) format version 1 \citep{GFA}.
+	Sequence names should follow the Pangenome Sequence Naming specification (PanSN-spec) (\href{https://github.com/pangenome/PanSN-spec}{https://github.com/pangenome/PanSN-spec}, last accessed October 2024). 
+	The primary output is a pangenome variation graph \citep{Garrison:2018} in the Graphical Fragment Assembly (GFA) format version 1 (\href{http://gfa-spec.github.io/GFA-spec/GFA1.html}{http://gfa-spec.github.io/GFA-spec/GFA1.html}, last accessed October 2024).
 	
 	\input{fig_panel}
 
@@ -195,7 +195,7 @@
 	The core workflow of nf-core/pangenomemirrors PGGB (Fig. \ref{fig:workflow}) with additional enhancements: (a) All concurrent processes can be run in parallel. (b) Each process can be given individual computing resources.
 	%This results in efficient resource management, especially compared to PGGB, which uses the same resources for all steps of the pipeline. 
 	
-	The pipeline begins with an all-to-all alignment of the input sequences using the whole-chromosome pairwise sequence aligner WFMASH \citep{wfmash}, avoiding reference, order, or orientation bias, allowing every sequence to serve as a reference.
+	The pipeline begins with an all-to-all alignment of the input sequences using the whole-chromosome pairwise sequence aligner WFMASH (\href{https://github.com/waveygang/wfmash}{https://github.com/waveygang/wfmash}, last accessed October 2024), avoiding reference, order, or orientation bias, allowing every sequence to serve as a reference.
 	%This avoids reference, order, or orientation bias, and allows each sequence in the pangenome to serve as a reference when exploring related variation. 
 	In the pangenome graph induction step SEQWISH \citep{Garrison2022}, an alignment to variation graph inducer, converts the sequence alignments into a variation graph. 
 	%SEQWISH can recapture homology relationships that may not be encoded in the initial alignments. 
@@ -287,7 +287,7 @@ If desired, the pipeline performs community detection to identify clusters of re
 	
 
 	Although we expect our pipeline to scale for future challenges, such as for the next HPRC phase which targets 350 individuals, further optimizations are possible: 
-	The IMplicit Pangenome Graph (IMPG) (\href{https://github.com/ekg/impg}{https://github.com/ekg/impg}) tool extracts homologous loci from genomes mapped to a specific target region.
+	The IMplicit Pangenome Graph (IMPG) (\href{https://github.com/ekg/impg}{https://github.com/ekg/impg}, last accessed October 2024) tool extracts homologous loci from genomes mapped to a specific target region.
 	This would allow us to break the whole genome multiple alignments into smaller pieces, construct a pangenome graph for each piece, and lace these together into a full graph with \href{https://github.com/pangenome/gfalace}{https://github.com/pangenome/gfalace}. 
 	%Our first trials 
 	%(\href{https://hackmd.io/vh0Ap65uQTm40DdleA-Oow}{https://hackmd.io/vh0Ap65uQTm40DdleA-Oow}) 
